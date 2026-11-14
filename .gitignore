@@ -1,0 +1,8 @@
+﻿# Operating system files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Dependencies and logs
+node_modules/
+*.log

@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Base styles: reset, typography and page layout (shared by both festivals)
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h2 {
+  color: var(--heading);
+  font-size: 1.6rem;
+  margin: 0 0 12px;
+}
+
+a {
+  color: var(--link);
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+section {
+  padding: 36px 0 8px;
+  scroll-margin-top: 56px;
+}
+
+/* Accessibility: lets keyboard users jump past the header */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  background: var(--card);
+  color: var(--link);
+  padding: 8px 14px;
+  border-radius: 6px;
+  z-index: 20;
+}
+
+.skip-link:focus {
+  top: 8px;
+}

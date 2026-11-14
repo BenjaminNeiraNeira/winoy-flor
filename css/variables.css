@@ -1,0 +1,42 @@
+/* ==========================================================================
+   Wiñoy Flor - design tokens (colors for light and dark mode)
+   Only this file changes between festivals; base.css and components.css
+   are shared.
+   ========================================================================== */
+
+:root {
+  /* Hero and footer */
+  --hero-start: #1b4d28;
+  --hero-end: #2e7d32;
+  --hero-border: #c2185b;
+  --footer-bg: #1b4d28;
+  --footer-ink: #dfeadf;
+
+  /* Text and links */
+  --heading: #2e7d32;
+  --link: #2e7d32;
+  --link-hover: #c2185b;
+
+  /* Surfaces */
+  --paper: #f4f8f3;
+  --ink: #1d2a1f;
+  --card: #ffffff;
+  --line: #d3e3d2;
+
+  /* Country cards (first: Colombia, second: Chile) and highlights */
+  --card-top-1: #2e7d32;
+  --card-top-2: #d84315;
+  --soon-border: #c2185b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --heading: #5fb869;
+    --link: #5fb869;
+    --paper: #121b14;
+    --ink: #e8f0e8;
+    --card: #1b271d;
+    --line: #2f4433;
+    --card-top-1: #5fb869;
+  }
+}
