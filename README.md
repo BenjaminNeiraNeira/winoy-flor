@@ -57,4 +57,9 @@ Open `index.html` in a browser, or use the Live Server extension in Visual Studi
 
 ## Publishing
 
+After changing a CSS or JavaScript file, raise the number in the `?v=3` part of its link in `index.html`
+(for example `?v=4`). This makes browsers download the new file instead of showing an old cached copy.
+If a script does not run, a safety net in `<head>` shows all the content after 2.5 seconds.
+
+
 The site is meant to be published with GitHub Pages from the `main` branch.

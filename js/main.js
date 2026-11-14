@@ -40,6 +40,9 @@
 (function () {
   'use strict';
 
+  // Tells index.html that this script is running (see the safety net in <head>)
+  document.documentElement.classList.add('reveal-ready');
+
   var items = document.querySelectorAll('[data-reveal]');
   if (!items.length) {
     return;

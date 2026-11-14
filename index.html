@@ -10,6 +10,13 @@
   <!-- Marks that JavaScript is available (scroll animations) and restores the saved theme before painting -->
   <script>
     document.documentElement.classList.add('js');
+    // Safety net: if js/main.js does not run (blocked, failed or an old cached copy),
+    // show all the content after 2.5 seconds instead of leaving it hidden.
+    window.setTimeout(function () {
+      if (!document.documentElement.classList.contains('reveal-ready')) {
+        document.documentElement.classList.remove('js');
+      }
+    }, 2500);
     try {
       var savedTheme = localStorage.getItem('winoy-theme');
       if (savedTheme === 'dark' || savedTheme === 'light') {
@@ -18,13 +25,13 @@
     } catch (error) { /* storage not available: the system theme is used */ }
   </script>
 
-  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/sections.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=3">
+  <link rel="stylesheet" href="css/variables.css?v=3">
+  <link rel="stylesheet" href="css/base.css?v=3">
+  <link rel="stylesheet" href="css/components.css?v=3">
+  <link rel="stylesheet" href="css/sections.css?v=3">
+  <link rel="stylesheet" href="css/footer.css?v=3">
+  <link rel="stylesheet" href="css/animations.css?v=3">
 </head>
 <body>
 
@@ -946,12 +953,12 @@
 
   <button class="to-top" type="button" aria-label="Back to top">↑</button>
 
-  <script src="assets/vendor/leaflet/leaflet.js" defer></script>
-  <script src="assets/vendor/qrcode/qrcode.js" defer></script>
-  <script src="js/theme.js" defer></script>
-  <script src="js/main.js" defer></script>
-  <script src="js/effects.js" defer></script>
-  <script src="js/map.js" defer></script>
-  <script src="js/share.js" defer></script>
+  <script src="assets/vendor/leaflet/leaflet.js?v=3" defer></script>
+  <script src="assets/vendor/qrcode/qrcode.js?v=3" defer></script>
+  <script src="js/theme.js?v=3" defer></script>
+  <script src="js/main.js?v=3" defer></script>
+  <script src="js/effects.js?v=3" defer></script>
+  <script src="js/map.js?v=3" defer></script>
+  <script src="js/share.js?v=3" defer></script>
 </body>
 </html>
