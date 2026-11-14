@@ -3,6 +3,8 @@
 Website of **Wiñoy Flor – Festival of the New Sun and the Flowers**, a fictional binational festival
 (Medellín, Colombia and Temuco, Chile) created for a COIL project between Colombia and Chile.
 
+> **Authors:** Group 5 of the COIL project between Chile and Colombia.
+>
 > The festival is fictional. It is inspired by two real celebrations: the Feria de las Flores (Colombia)
 > and We Tripantu (Chile). The images were generated with artificial intelligence.
 
@@ -57,8 +59,8 @@ Open `index.html` in a browser, or use the Live Server extension in Visual Studi
 
 ## Publishing
 
-After changing a CSS or JavaScript file, raise the number in the `?v=3` part of its link in `index.html`
-(for example `?v=4`). This makes browsers download the new file instead of showing an old cached copy.
+After changing a CSS or JavaScript file, raise the number in the `?v=6` part of its link in `index.html`
+(for example `?v=7`). This makes browsers download the new file instead of showing an old cached copy.
 If a script does not run, a safety net in `<head>` shows all the content after 2.5 seconds.
 
 

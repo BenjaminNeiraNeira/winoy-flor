@@ -10,7 +10,7 @@
 
 /* ---- Section bands ---- */
 section.band {
-  padding: clamp(40px, 8vw, 64px) 0 clamp(36px, 7vw, 56px);
+  padding: clamp(52px, 9vw, 84px) 0 clamp(48px, 8vw, 76px);
 }
 
 section.band.tint {
@@ -44,7 +44,7 @@ section.band.tint {
   width: 96px;
   height: 4px;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--card-top-1), var(--sun), var(--accent));
+  background: var(--card-top-1);
   transition: width 0.9s ease 0.3s;
 }
 
@@ -61,9 +61,15 @@ section.band.tint {
 }
 
 /* ---- Figures ---- */
+/* ---- Figures: the caption hides behind the picture and slides out below it while the mouse is over it ---- */
 .figure {
   margin: 0;
   position: relative;
+}
+
+.figure .media {
+  position: relative;
+  z-index: 2;
   overflow: hidden;
   border-radius: 16px;
   background: var(--card);
@@ -83,20 +89,38 @@ section.band.tint {
 
 .figure figcaption {
   position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  bottom: 0;
-  padding: 26px 16px 12px;
+  z-index: 1;
+  padding: 10px 16px 12px;
   font-size: 0.88rem;
-  color: #fff;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.62));
-  transform: translateY(4px);
-  transition: transform 0.4s ease;
+  color: var(--muted);
+  background: var(--card);
+  border-radius: 0 0 16px 16px;
+  box-shadow: none;
+  transform: translateY(-100%); /* hidden: its bottom edge matches the picture's bottom edge */
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
 }
 
-.figure:hover figcaption {
-  transform: none;
+/* The caption is a child of the figure, so it stays out while the mouse is over the picture OR over the caption */
+.figure:hover figcaption,
+.figure:focus-within figcaption {
+  transform: translateY(0);
+  box-shadow: var(--shadow);
 }
+
+/* Touch screens have no hover: the caption simply sits below the picture */
+@media (hover: none) {
+  .figure figcaption {
+    position: static;
+    margin-top: 8px;
+    border-radius: 12px;
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+}
+
 
 /* ---- Stats ---- */
 .stats-band {
@@ -134,7 +158,7 @@ section.band.tint {
 .split {
   display: grid;
   gap: 28px;
-  align-items: start;
+  align-items: center;
 }
 
 @media (min-width: 860px) {
@@ -152,6 +176,10 @@ section.band.tint {
   border-radius: 0 14px 14px 0;
   box-shadow: var(--shadow);
   font-style: italic;
+}
+
+.figure + .legend {
+  margin-top: 56px;
 }
 
 .legend h3 {
@@ -265,11 +293,6 @@ table.data tbody th {
   }
 }
 
-.fact .ico {
-  flex: none;
-  font-size: 1.7rem;
-  line-height: 1.2;
-}
 
 .fact h3 {
   margin: 0 0 2px;
@@ -337,7 +360,7 @@ table.data tbody th {
   bottom: 8px;
   width: 4px;
   border-radius: 4px;
-  background: linear-gradient(var(--card-top-1), var(--sun), var(--accent));
+  background: var(--card-top-1);
 }
 
 .tl-item {
@@ -455,17 +478,25 @@ table.data tbody th {
 /* ---- Dishes and drinks ---- */
 .dish-grid {
   display: grid;
-  gap: 20px;
+  column-gap: 20px;
+  row-gap: 0;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
 }
 
+/* The cards share their rows (subgrid): titles, labels and texts line up from card to card */
 .dish {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 6;
+  margin-bottom: 20px;
   overflow: hidden;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 16px;
+}
+
+.dish-grid.drinks .dish {
+  grid-row: span 9;
 }
 
 .dish .thumb {
@@ -490,16 +521,43 @@ table.data tbody th {
 }
 
 .dish-body {
-  padding: 14px 18px 18px;
+  display: contents;
 }
 
-.dish-body h3 {
-  margin: 0 0 6px;
+.dish-body > * {
+  padding-left: 18px;
+  padding-right: 18px;
 }
 
-.dish-body p {
-  margin: 4px 0;
+.dish-body > h3 {
+  margin: 14px 0 6px;
 }
+
+.dish-body > .badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 4px 6px;
+  margin: 0 0 4px;
+}
+
+.dish-body > .badges .badge {
+  margin: 0;
+}
+
+.dish-body > p {
+  margin: 3px 0;
+}
+
+.dish-body > .label {
+  margin-top: 10px;
+}
+
+.dish-body > :last-child {
+  padding-bottom: 18px;
+}
+
 
 .label {
   margin-top: 10px;
@@ -642,18 +700,12 @@ table.data tbody th {
 @media (min-width: 860px) {
   .practice {
     grid-template-columns: 1fr 1fr;
-    align-items: start;
   }
 
   .practice.flip .figure {
     order: -1;
   }
 
-  /* The picture stays in view while the text is read */
-  .practice .figure {
-    position: sticky;
-    top: 76px;
-  }
 }
 
 .practice h3 {
@@ -673,14 +725,22 @@ table.data tbody th {
 /* ---- Colombian contributions ---- */
 .contrib-grid {
   display: grid;
-  gap: 18px;
+  column-gap: 18px;
+  row-gap: 0;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 }
 
+/* Four cards: two columns on wide screens (2 x 2) instead of 3 + 1 */
+.contrib-grid.four {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+}
+
+/* The cards share their rows (subgrid): the "real fact" boxes and the "in the festival" boxes line up */
 .contrib {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  margin-bottom: 18px;
   padding: 18px 20px;
   background: var(--card);
   border: 1px solid var(--line);
@@ -689,7 +749,7 @@ table.data tbody th {
 }
 
 .contrib h3 {
-  margin: 0;
+  margin: 0 0 10px;
 }
 
 .contrib p {
@@ -703,6 +763,7 @@ table.data tbody th {
 }
 
 .contrib .real {
+  margin-bottom: 10px;
   background: var(--leaf-tint);
 }
 
@@ -742,9 +803,9 @@ table.data tbody th {
   left: 0;
   width: 100%;
   height: 4px;
-  transform-origin: 0 50%;
-  transform: scaleX(var(--p, 0));
+  /* The gradient always has its final size; the scroll only uncovers it from the left */
   background: linear-gradient(90deg, var(--card-top-1), var(--sun), var(--accent));
+  clip-path: inset(0 calc((1 - var(--p, 0)) * 100%) 0 0);
   z-index: 40;
 }
 
@@ -752,20 +813,46 @@ table.data tbody th {
   position: fixed;
   right: 18px;
   bottom: 18px;
+  display: grid;
+  place-items: center;
   width: 48px;
   height: 48px;
-  border: 0;
-  border-radius: 50%;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font: inherit;
   font-size: 1.3rem;
   color: var(--on-primary);
   background: var(--card-top-1);
+  border: 0;
+  border-radius: 999px;
   box-shadow: var(--shadow);
   cursor: pointer;
   opacity: 0;
   transform: translateY(16px);
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
-  z-index: 30;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, width 0.35s ease;
+  z-index: 1300;
+}
+
+.to-top span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.25s ease;
+}
+
+.to-top .arrow svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.to-top .txt {
+  font-size: 0.92rem;
+  font-weight: 700;
+  opacity: 0;
 }
 
 .to-top.show {
@@ -775,9 +862,37 @@ table.data tbody th {
 }
 
 .to-top:hover,
-.to-top:focus {
+.to-top:focus-visible {
+  width: 132px;
   color: var(--on-accent);
   background: var(--accent);
+}
+
+.to-top:hover .arrow,
+.to-top:focus-visible .arrow {
+  opacity: 0;
+}
+
+.to-top:hover .txt,
+.to-top:focus-visible .txt {
+  opacity: 1;
+}
+
+/* Touch screens: keep the round arrow button */
+@media (hover: none) {
+  .to-top:hover {
+    width: 48px;
+    color: var(--on-primary);
+    background: var(--card-top-1);
+  }
+
+  .to-top:hover .arrow {
+    opacity: 1;
+  }
+
+  .to-top:hover .txt {
+    opacity: 0;
+  }
 }
 
 /* ==========================================================================

@@ -3,7 +3,7 @@
    - Hero: glowing sun, falling petals and leaves, staggered entrance
    - Scroll reveal (rise, slide-in for the timeline, image reveal)
    - Timeline markers that pop in, pulsing "live" badges
-   - Hover effects, flickering fire, wiggling icons, floating sprout
+   - Hover effects
    Everything is switched off for visitors who prefer reduced motion.
    ========================================================================== */
 
@@ -166,15 +166,6 @@
   box-shadow: var(--shadow);
 }
 
-.fact:hover .ico,
-.panel:hover h3::first-letter {
-  animation: wiggle 0.7s ease;
-}
-
-.fact .ico {
-  display: inline-block;
-}
-
 /* ---- Share menu and map ---- */
 .share-menu:not([hidden]) {
   animation: menu-pop 0.4s cubic-bezier(0.2, 1.3, 0.4, 1);
@@ -194,19 +185,6 @@
 
 .venue-pin span {
   animation: pin-drop 0.7s cubic-bezier(0.3, 1.5, 0.5, 1) backwards;
-}
-
-/* ---- Fire and sprout ---- */
-.flicker {
-  display: inline-block;
-  animation: flicker 2.2s ease-in-out infinite;
-}
-
-.soon .sprout {
-  font-size: 2rem;
-  margin: 0 0 4px;
-  display: inline-block;
-  animation: bob 2.6s ease-in-out infinite;
 }
 
 /* ---- Keyframes ---- */
@@ -338,41 +316,6 @@
   }
 }
 
-@keyframes bob {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes wiggle {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-14deg) scale(1.15);
-  }
-  75% {
-    transform: rotate(12deg) scale(1.15);
-  }
-}
-
-@keyframes flicker {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 4px rgba(var(--glow), 0.6));
-  }
-  30% {
-    transform: scale(1.1) rotate(-4deg);
-    filter: drop-shadow(0 0 10px rgba(255, 120, 30, 0.8));
-  }
-  60% {
-    transform: scale(0.96) rotate(3deg);
-  }
-}
-
 /* ---- Smooth color change while the theme is switched (class added by theme.js) ---- */
 .theme-anim,
 .theme-anim *,
@@ -387,8 +330,6 @@
   .share-menu:not([hidden]) .share-qr svg,
   .venue-pin span,
   .hero::before,
-  .soon .sprout,
-  .flicker,
   .badge-live::before,
   .tl-item.is-key.is-visible .tl-marker {
     animation: none;
@@ -430,6 +371,7 @@
   .acc,
   .chip,
   .figure img,
+  .figure figcaption,
   .dish .thumb img,
   .char img {
     transition: none;
@@ -450,7 +392,4 @@
     transform: none;
   }
 
-  .fact:hover .ico {
-    animation: none;
-  }
 }

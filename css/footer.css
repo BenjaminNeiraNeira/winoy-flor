@@ -131,6 +131,7 @@
 
 .map-box {
   position: relative;
+  isolation: isolate; /* the map's inner layers can never go above the page buttons */
   overflow: hidden;
   border: 1px solid var(--footer-line);
   border-radius: 8px;
