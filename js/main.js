@@ -1,8 +1,11 @@
 /* ==========================================================================
-   main.js - highlights the navigation link of the section being viewed.
-   Plain JavaScript, no libraries. The page works without it.
+   main.js
+   1. Highlights the navigation link of the section being viewed.
+   2. Reveals elements marked with data-reveal while scrolling.
+   Plain JavaScript, no libraries. The page content stays visible without it.
    ========================================================================== */
 
+/* ---- 1. Active navigation link ---- */
 (function () {
   'use strict';
 
@@ -30,5 +33,39 @@
     if (section) {
       observer.observe(section);
     }
+  });
+})();
+
+/* ---- 2. Scroll reveal ---- */
+(function () {
+  'use strict';
+
+  var items = document.querySelectorAll('[data-reveal]');
+  if (!items.length) {
+    return;
+  }
+
+  // Without IntersectionObserver, just show everything.
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (item) {
+      item.classList.add('is-visible');
+    });
+    return;
+  }
+
+  var revealer = new IntersectionObserver(
+    function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  items.forEach(function (item) {
+    revealer.observe(item);
   });
 })();

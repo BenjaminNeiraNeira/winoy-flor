@@ -1,42 +1,85 @@
 /* ==========================================================================
    Wiñoy Flor - design tokens (colors for light and dark mode)
-   Only this file changes between festivals; base.css and components.css
-   are shared.
+   Palette (see PALETA_WINOY_FLOR.md): cream sunrise, mist green, earth
+   brown, hillside green, deep green, flower magenta, sun gold, fire red.
+
+   Theme logic:
+   - The default theme is ALWAYS light, whatever the system theme is.
+   - The dark theme is only turned on with the toggle button in the
+     navigation bar, which sets data-theme="dark" on <html>.
+   Only this file changes between festivals; the other stylesheets use
+   these variables.
    ========================================================================== */
 
 :root {
+  color-scheme: light;
+
   /* Hero and footer */
-  --hero-start: #1b4d28;
-  --hero-end: #2e7d32;
-  --hero-border: #c2185b;
-  --footer-bg: #1b4d28;
-  --footer-ink: #dfeadf;
+  --hero-start: #1B4D2A;
+  --hero-end: #2E7D32;
+  --hero-border: #C2185B;
+  --footer-bg: #FBF1DF;
+  --footer-ink: #2B2118;
+  --footer-line: #E6DCC8;
+  --qr-ink: #1B4D2A;
 
   /* Text and links */
-  --heading: #2e7d32;
-  --link: #2e7d32;
-  --link-hover: #c2185b;
+  --heading: #2E7D32;
+  --link: #2E7D32;
+  --link-hover: #C2185B;
+  --muted: #5E5347;
 
   /* Surfaces */
-  --paper: #f4f8f3;
-  --ink: #1d2a1f;
-  --card: #ffffff;
-  --line: #d3e3d2;
+  --paper: #FFF8EC;
+  --leaf-tint: #EEF5EE;
+  --ink: #2B2118;
+  --card: #FFFFFF;
+  --line: #E6DCC8;
+  --shadow: 0 10px 26px rgba(43, 33, 24, 0.14);
 
   /* Country cards (first: Colombia, second: Chile) and highlights */
-  --card-top-1: #2e7d32;
-  --card-top-2: #d84315;
-  --soon-border: #c2185b;
+  --card-top-1: #2E7D32;
+  --card-top-2: #C8321A;
+  --soon-border: #C2185B;
+
+  /* Accents */
+  --accent: #C2185B;
+  --accent-soft: #FBE4EE;
+  --sun: #F2A900;
+  --fire: #C8321A;
+  --warn-bg: #FFE8DD;
+  --warn-ink: #A8330F;
+
+  /* Text placed on top of the green (--card-top-1) and magenta (--accent) fills */
+  --on-primary: #FFFFFF;
+  --on-accent: #FFFFFF;
+
+  /* Sun glow in the hero (R, G, B values, used by animations.css) */
+  --glow: 242, 169, 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --heading: #5fb869;
-    --link: #5fb869;
-    --paper: #121b14;
-    --ink: #e8f0e8;
-    --card: #1b271d;
-    --line: #2f4433;
-    --card-top-1: #5fb869;
-  }
+/* Dark theme: only when the visitor turns it on with the toggle button */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --heading: #F2A900;
+  --link: #F2A900;
+  --link-hover: #F06292;
+  --soon-border: #F06292;
+  --muted: #B8B0A0;
+  --paper: #121A12;
+  --leaf-tint: #1A2A1C;
+  --ink: #FFF8EC;
+  --card: #1A241A;
+  --line: #2F3F2C;
+  --shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  --card-top-1: #43A047;
+  --footer-bg: #0D150D;
+  --footer-ink: #FFF8EC;
+  --footer-line: #2F3F2C;
+  --accent: #F06292;
+  --accent-soft: #3A1426;
+  --warn-bg: #3B1B10;
+  --warn-ink: #FF9D7A;
+  --on-primary: #121A12;
+  --on-accent: #121A12;
 }

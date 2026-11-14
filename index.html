@@ -7,15 +7,47 @@
   <meta name="description" content="Wiñoy Flor: a fictional binational festival of the new sun and the flowers, celebrated in Medellín (Colombia) and Temuco (Chile).">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
+  <!-- Marks that JavaScript is available (scroll animations) and restores the saved theme before painting -->
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var savedTheme = localStorage.getItem('winoy-theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    } catch (error) { /* storage not available: the system theme is used */ }
+  </script>
+
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
 
+  <div class="progress" aria-hidden="true"></div>
   <a class="skip-link" href="#about">Skip to content</a>
 
   <header class="hero">
+    <div class="petals" aria-hidden="true">
+      <span style="--i:1"></span>
+      <span style="--i:2"></span>
+      <span style="--i:3"></span>
+      <span style="--i:4"></span>
+      <span style="--i:5"></span>
+      <span style="--i:6"></span>
+      <span style="--i:7"></span>
+      <span style="--i:8"></span>
+      <span style="--i:9"></span>
+      <span style="--i:10"></span>
+      <span style="--i:11"></span>
+      <span style="--i:12"></span>
+      <span style="--i:13"></span>
+      <span style="--i:14"></span>
+    </div>
     <div class="kicker">COIL · Colombia – Chile · Fictional festival</div>
     <h1>Wiñoy Flor</h1>
     <p class="tagline">&ldquo;When the sun returns, the flowers bloom.&rdquo;</p>
@@ -27,64 +59,899 @@
   </header>
 
   <nav class="main-nav" aria-label="Main sections">
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#places">Two countries</a></li>
-      <li><a href="#game">Card game</a></li>
-      <li><a href="#credits">Credits</a></li>
-    </ul>
+    <div class="nav-inner">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#facts">Facts</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#food">Food &amp; drinks</a></li>
+        <li><a href="#culture">Culture</a></li>
+        <li><a href="#respect">Respect</a></li>
+        <li><a href="#sustainability">Sustainability</a></li>
+        <li><a href="#future">Future</a></li>
+        <li><a href="#credits">Credits</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+        <span class="icon" aria-hidden="true">🌙</span><span class="toggle-text">Dark</span>
+      </button>
+    </div>
   </nav>
 
-  <main class="wrap">
+  <main>
 
-    <section id="about">
-      <h2>The Festival of the New Sun and the Flowers</h2>
-      <p>
-        Wiñoy Flor is a fictional ten-day festival that celebrates the renewal of nature. It joins the
-        Silleteros Parade of the Feria de las Flores in Medellín with the We Tripantu ceremony, the
-        Mapuche New Year. Both countries celebrate at the same time and connect live at the most
-        important moments.
-      </p>
-      <p>
-        <strong>Wiñoy</strong> means &ldquo;return&rdquo; in Mapudungun, and <strong>Flor</strong> is
-        the symbol of Medellín. The festival fuses two symbols: the <em>silleta</em>, the flower
-        disc carried by the silleteros, and the <em>kultrún</em>, the sacred Mapuche drum.
-      </p>
-    </section>
+    <!-- ===================== STATS ===================== -->
+    <div class="stats-band">
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat" data-reveal><strong data-count="10">10</strong><span>days of festival</span></div>
+          <div class="stat" data-reveal style="--delay:.1s"><strong data-count="2">2</strong><span>countries, one celebration</span></div>
+          <div class="stat" data-reveal style="--delay:.2s"><strong data-count="4">4</strong><span>fusion dishes</span></div>
+          <div class="stat" data-reveal style="--delay:.3s"><strong data-count="3">3</strong><span>fusion drinks</span></div>
+        </div>
+      </div>
+    </div>
 
-    <section id="places">
-      <h2>One festival, two countries</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>🇨🇴 Medellín, Colombia</h3>
-          <p><strong>Venues:</strong> Santa Elena, Botanical Garden and Parque de los Deseos.</p>
-          <p><strong>Weather:</strong> mild, about 18–26 °C, with occasional rain.</p>
-        </article>
-        <article class="card chile">
-          <h3>🇨🇱 Temuco, Chile</h3>
-          <p><strong>Venues:</strong> Cerro Ñielol and Plaza Teodoro Schmidt.</p>
-          <p><strong>Weather:</strong> winter, about 3–12 °C, cold and rainy.</p>
-        </article>
+    <!-- ===================== ABOUT ===================== -->
+    <section class="band" id="about">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">The festival</div>
+          <h2>Concept and story</h2>
+        </div>
+
+        <div class="split">
+          <div>
+            <p class="lead" data-reveal>
+              Wiñoy Flor is a fictional ten-day festival that celebrates the rebirth of nature. Its name
+              blends <strong>Wiñoy</strong> (&ldquo;return&rdquo; in Mapudungun, as in Wiñoy Tripantu, the
+              return of the sun) with <strong>Flor</strong>, the symbol of Medellín and of the Feria de las
+              Flores. Its motto is <em>&ldquo;When the sun returns, the flowers bloom.&rdquo;</em>
+            </p>
+            <p data-reveal style="--delay:.1s">
+              The festival takes place <strong>simultaneously at two venues</strong>: Medellín (Colombia) and
+              Temuco (Chile). Each venue lives its own activities, but the two connect live at the most
+              important moments: the New Fire ceremony, the storytelling night and the grand final parade.
+              This way, a paisa silletero and a Mapuche family can &ldquo;meet&rdquo; through a screen and
+              share the same sunrise.
+            </p>
+            <p data-reveal style="--delay:.2s">
+              The big idea is to fuse two symbols: the <strong>silleta</strong> (the flower disc carried by
+              the silleteros) and the <strong>kultrún</strong> (the Mapuche ceremonial drum, which represents
+              the universe). At Wiñoy Flor, silletas are decorated with Mapuche motifs and kultrunes are
+              adorned with flowers. The final parade is called the <strong>Grand Parade of Silleteros and
+              Weichafes of the Sun</strong>.
+            </p>
+          </div>
+
+          <figure class="figure" data-reveal>
+            <img src="assets/images/cover.jpg" width="1200" height="670"
+                 alt="A silletera from Medellín carrying a disc of flowers and a Mapuche woman with a kultrún stand beside a bonfire at sunrise in the mountains.">
+            <figcaption>Cover image: a silletera and a Mapuche guardian meet at the solstice sunrise.</figcaption>
+          </figure>
+        </div>
+
+        <figure class="figure" data-reveal style="margin-top:28px">
+          <img src="assets/images/banner-live-opening.jpg" width="1400" height="463" loading="lazy" decoding="async"
+               alt="Split scene: flower gardens and silleteros in Medellín on the left, a bonfire and tents in Temuco on the right, joined by a golden arc of light and giant screens.">
+          <figcaption>“Live-linked opening”: Medellín (left) and Temuco (right), one festival, two countries, at the same time.</figcaption>
+        </figure>
+
+        <div class="legend" data-reveal>
+          <h3>The legend of the festival (an invented story)</h3>
+          <p>
+            They say that on the longest night of the year, when the sun had almost fallen asleep, Ñuke Mapu
+            (Mother Earth) came down to the mountain of Santa Elena and found a silletero carrying a disc of
+            flowers on his back. She told him: &ldquo;Your flowers keep the warmth of the sun; my fires keep
+            its memory.&rdquo; Together they lit the <strong>New Fire</strong>, and from its sparks
+            <strong>Pétalo</strong> was born: a flower that never wilts and travels every year between
+            Colombia and Chile to announce that the sun is coming back. That is why, every June 21, both
+            peoples light the fire at the same time.
+          </p>
+        </div>
+
+        <div class="table-wrap" data-reveal>
+          <h3>Which celebrations is it born from?</h3>
+          <table class="data">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Feria de las Flores (Colombia)</th>
+                <th>We Tripantu (Chile)</th>
+                <th>The new festival</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Central idea</th>
+                <td data-label="Feria de las Flores">Flowers and Antioquian peasant tradition</td>
+                <td data-label="We Tripantu">Rebirth of nature and return of the sun</td>
+                <td data-label="The new festival">Rebirth of nature celebrated with flowers</td>
+              </tr>
+              <tr>
+                <th scope="row">Symbol</th>
+                <td data-label="Feria de las Flores">Silleta of flowers</td>
+                <td data-label="We Tripantu">Fire and kultrún</td>
+                <td data-label="The new festival">Silleta with Mapuche symbols and kultrún with flowers</td>
+              </tr>
+              <tr>
+                <th scope="row">Main event</th>
+                <td data-label="Feria de las Flores">Silleteros Parade (closes the fair)</td>
+                <td data-label="We Tripantu">Dawn ceremony (rogativa)</td>
+                <td data-label="The new festival">New Fire ceremony + Grand Parade of Silleteros and Weichafes of the Sun</td>
+              </tr>
+              <tr>
+                <th scope="row">Music</th>
+                <td data-label="Feria de las Flores">Trova paisa, carrilera, tiple</td>
+                <td data-label="We Tripantu">Kultrún, trutruka, pifilka, ül singing</td>
+                <td data-label="The new festival">Tiple with kultrún, trutruka with carrilera</td>
+              </tr>
+              <tr>
+                <th scope="row">Atmosphere</th>
+                <td data-label="Feria de las Flores">Festive, massive and touristic</td>
+                <td data-label="We Tripantu">Ceremonial and communal</td>
+                <td data-label="The new festival">Festive by day, ceremonial at dawn</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <section id="game">
-      <h2>Card game</h2>
-      <div class="soon">
-        <p><strong>Coming soon!</strong></p>
-        <p>A card battle game about the characters, dishes, symbols and sustainable practices of Wiñoy Flor.</p>
+    <!-- ===================== FACTS ===================== -->
+    <section class="band tint" id="facts">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">At a glance</div>
+          <h2>Fact sheet</h2>
+        </div>
+
+        <div class="facts">
+          <article class="fact" data-reveal>
+            <span class="ico" aria-hidden="true">🏷️</span>
+            <div><h3>Name</h3><p>Wiñoy Flor – Festival of the New Sun and the Flowers</p></div>
+          </article>
+          <article class="fact" data-reveal style="--delay:.05s">
+            <span class="ico" aria-hidden="true">💬</span>
+            <div><h3>Motto</h3><p>&ldquo;When the sun returns, the flowers bloom&rdquo;</p></div>
+          </article>
+          <article class="fact" data-reveal style="--delay:.1s">
+            <span class="ico" aria-hidden="true">🎪</span>
+            <div><h3>Type</h3><p>Binational festival of culture, nature and gastronomy (fictional)</p></div>
+          </article>
+          <article class="fact wide" data-reveal>
+            <span class="ico" aria-hidden="true">📍</span>
+            <div>
+              <h3>Countries and venues</h3>
+              <p><strong>Colombia:</strong> Medellín (Santa Elena, Botanical Garden and Parque de los Deseos).</p>
+              <p><strong>Chile:</strong> Temuco, La Araucanía (Cerro Ñielol and Plaza Teodoro Schmidt).</p>
+              <p>Both venues run at the same time.</p>
+            </div>
+          </article>
+          <article class="fact" data-reveal style="--delay:.15s">
+            <span class="ico" aria-hidden="true">📅</span>
+            <div><h3>Dates</h3><p>June 21 to 30 every year (10 days). It starts on the day of the winter solstice.</p></div>
+          </article>
+          <article class="fact span2" data-reveal>
+            <span class="ico" aria-hidden="true">🌦️</span>
+            <div>
+              <h3>Climate</h3>
+              <p><strong>Medellín:</strong> mild, ~18–26 °C, with occasional rain.</p>
+              <p><strong>Temuco:</strong> winter, ~3–12 °C, cold and rainy. Heated tents and bonfires are available.</p>
+            </div>
+          </article>
+          <article class="fact" data-reveal style="--delay:.05s">
+            <span class="ico" aria-hidden="true">🔥</span>
+            <div><h3>Symbols</h3><p>The silleta with Mapuche symbols, the kultrún with flowers, the New Fire and Pétalo, the mascot.</p></div>
+          </article>
+          <article class="fact" data-reveal style="--delay:.1s">
+            <span class="ico" aria-hidden="true">🎨</span>
+            <div>
+              <h3>Colors</h3>
+              <div class="swatches">
+                <span class="swatch"><i style="background:#2E7D32"></i>Green</span>
+                <span class="swatch"><i style="background:#C2185B"></i>Magenta</span>
+                <span class="swatch"><i style="background:#F2A900"></i>Gold (sun)</span>
+                <span class="swatch"><i style="background:#C8321A"></i>Red (fire)</span>
+              </div>
+            </div>
+          </article>
+          <article class="fact" data-reveal>
+            <span class="ico" aria-hidden="true">🎵</span>
+            <div><h3>Music</h3><p>A fusion of trova paisa and carrilera with kultrún, trutruka and Mapuche singing.</p></div>
+          </article>
+          <article class="fact" data-reveal style="--delay:.05s">
+            <span class="ico" aria-hidden="true">🧣</span>
+            <div><h3>Clothing</h3><p>Paisa ruana with Mapuche designs, trarilonko (silver headband) with flowers, aguadeño hat.</p></div>
+          </article>
+          <article class="fact" data-reveal style="--delay:.1s">
+            <span class="ico" aria-hidden="true">🍲</span>
+            <div><h3>Food</h3><p>Paisa sopaipilla, mültrün with hogao, lamb and pine nut sancocho, pine nut natilla.</p></div>
+          </article>
+          <article class="fact" data-reveal style="--delay:.15s">
+            <span class="ico" aria-hidden="true">🥤</span>
+            <div><h3>Drinks</h3><p>Fuego Nuevo, Silleta Fresca, Muday with panela (traditional fermented version and unfermented version).</p></div>
+          </article>
+          <article class="fact" data-reveal>
+            <span class="ico" aria-hidden="true">👨‍👩‍👧</span>
+            <div><h3>Audience</h3><p>Families, national and international tourists, Indigenous and peasant communities, young people and students.</p></div>
+          </article>
+          <article class="fact span2" data-reveal style="--delay:.05s">
+            <span class="ico" aria-hidden="true">🎟️</span>
+            <div><h3>Entry</h3><p>Free for ceremonies and parades; workshops and concerts by registration.</p></div>
+          </article>
+        </div>
+
+        <div class="note" data-reveal>
+          <h3>Why these dates?</h3>
+          <p>
+            <strong>June 21</strong> is the date of We Tripantu (the winter solstice in the Southern
+            Hemisphere), which is why it is the opening day. The <strong>ten-day length</strong> and the
+            closing with the silleteros parade come from the Feria de las Flores in Medellín, which lasts
+            about ten days and ends with its great Silleteros Parade (in 2026, from July 31 to August 9, with
+            the parade on the closing Sunday). It is a design choice: Medellín’s fair takes place in August,
+            but here it is moved to the solstice to join it with We Tripantu.
+          </p>
+          <p>
+            Wiñoy Flor is a fictional festival created from real celebrations: the Feria de las Flores
+            (Colombia) and We Tripantu (Chile). Its dates, places and menus are design proposals, not real data.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROGRAM ===================== -->
+    <section class="band" id="program">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">Ten days, two countries</div>
+          <h2>Festival program</h2>
+        </div>
+
+        <ol class="timeline">
+          <li class="tl-item is-key" data-reveal>
+            <span class="tl-marker">1</span>
+            <div class="tl-card">
+              <p class="tl-date">Day 1 · June 21</p>
+              <h3><span class="flicker" aria-hidden="true">🔥</span> New Fire Ceremony <span class="badge-live">Live link</span></h3>
+              <p>At sunrise, greeting to the sun (&ldquo;Wiñoy Antu&rdquo;) and lighting of the fire at both venues, linked live. Flower offering.</p>
+            </div>
+          </li>
+          <li class="tl-item" data-reveal>
+            <span class="tl-marker">2–3</span>
+            <div class="tl-card">
+              <p class="tl-date">Days 2–3</p>
+              <h3>Market of Flowers and Knowledge</h3>
+              <p><strong>Medellín:</strong> exhibition of flowers, silletas and paisa crafts. <strong>Temuco:</strong> fair of silverwork, weaving and Mapuche gastronomy. Products are exchanged.</p>
+            </div>
+          </li>
+          <li class="tl-item" data-reveal>
+            <span class="tl-marker">4</span>
+            <div class="tl-card">
+              <p class="tl-date">Day 4</p>
+              <h3>Silleta and kultrún workshops</h3>
+              <p>Learn to build a silleta, paint a kultrún and weave a ruana with Mapuche motifs.</p>
+            </div>
+          </li>
+          <li class="tl-item" data-reveal>
+            <span class="tl-marker">5</span>
+            <div class="tl-card">
+              <p class="tl-date">Day 5</p>
+              <h3>Storytelling Night <span class="badge-live">Live link</span></h3>
+              <p>Legends and myths of both countries told by grandparents and storytellers, with a live link.</p>
+            </div>
+          </li>
+          <li class="tl-item" data-reveal>
+            <span class="tl-marker">6</span>
+            <div class="tl-card">
+              <p class="tl-date">Day 6</p>
+              <h3>Fusion concerts</h3>
+              <p>Tiple and kultrún, trutruka and carrilera, paisa trova with ül singing.</p>
+              <p class="guest">💃 <strong>Guest city: Cali.</strong> A “Salsa and kultrún night”, where Colombian salsa joins the kultrún and the trutruka.</p>
+            </div>
+          </li>
+          <li class="tl-item" data-reveal>
+            <span class="tl-marker">7</span>
+            <div class="tl-card">
+              <p class="tl-date">Day 7</p>
+              <h3>Sun Cavalcade</h3>
+              <p>Cavalcade in Santa Elena and rogativa on horseback in La Araucanía.</p>
+            </div>
+          </li>
+          <li class="tl-item" data-reveal>
+            <span class="tl-marker">8</span>
+            <div class="tl-card">
+              <p class="tl-date">Day 8</p>
+              <h3>Gastronomic Route</h3>
+              <p>Tasting of the fusion dishes and a cooking contest between cooks from both countries.</p>
+              <p class="guest">🍲 <strong>Guest dishes and drinks:</strong> sancocho de gallina, lulada, champús and Guarapo Wiñoy.</p>
+            </div>
+          </li>
+          <li class="tl-item" data-reveal>
+            <span class="tl-marker">9</span>
+            <div class="tl-card">
+              <p class="tl-date">Day 9</p>
+              <h3>Youth Meeting</h3>
+              <p>Forum and fair of cultural projects by students from Colombia and Chile.</p>
+            </div>
+          </li>
+          <li class="tl-item is-key" data-reveal>
+            <span class="tl-marker">10</span>
+            <div class="tl-card">
+              <p class="tl-date">Day 10 · June 30</p>
+              <h3>Grand Parade of Silleteros and Weichafes of the Sun</h3>
+              <p>Parade of silletas with Mapuche symbols and dances in both cities. Closing with the Great Bonfire of Light.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="venues">
+          <article class="card" data-reveal>
+            <h3>🌺 Venue Colombia</h3>
+            <p class="kv"><strong>City:</strong> Medellín, Antioquia</p>
+            <p class="kv"><strong>Spaces:</strong> Santa Elena (silletero area), Botanical Garden, Parque de los Deseos</p>
+            <p class="kv"><strong>Climate:</strong> mild and humid</p>
+            <p class="kv"><strong>Hosts:</strong> silletero families of Santa Elena</p>
+            <p class="kv"><strong>Languages:</strong> Spanish</p>
+          </article>
+          <article class="card chile" data-reveal style="--delay:.15s">
+            <h3>🌲 Venue Chile</h3>
+            <p class="kv"><strong>City:</strong> Temuco, La Araucanía</p>
+            <p class="kv"><strong>Spaces:</strong> Cerro Ñielol, Plaza Teodoro Schmidt, community ruka</p>
+            <p class="kv"><strong>Climate:</strong> cold and rainy; tents and bonfires</p>
+            <p class="kv"><strong>Hosts:</strong> Mapuche communities of La Araucanía</p>
+            <p class="kv"><strong>Languages:</strong> Spanish and Mapudungun</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOD & DRINKS ===================== -->
+    <section class="band tint" id="food">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">Gastronomy</div>
+          <h2>Fusion food and drinks</h2>
+        </div>
+
+        <h3 class="subhead" style="margin-top:0">Fusion dishes</h3>
+        <div class="dish-grid">
+          <article class="dish" data-reveal>
+            <div class="thumb"><img src="assets/images/dish-sopaipilla-paisa.jpg" width="800" height="597" loading="lazy" decoding="async" alt="Golden fried squash sopaipillas topped with hogao, fresh cheese and sliced avocado."></div>
+            <div class="dish-body">
+              <h3>Paisa sopaipilla</h3>
+              <p class="label">Ingredients</p>
+              <p>Fried squash dough, hogao (tomato and onion), campesino cheese and avocado.</p>
+              <p class="label">What it fuses</p>
+              <p>Chilean sopaipilla + hogao and paisa arepa.</p>
+            </div>
+          </article>
+          <article class="dish" data-reveal style="--delay:.1s">
+            <div class="thumb"><img src="assets/images/dish-multrun-hogao.jpg" width="800" height="597" loading="lazy" decoding="async" alt="A corn humita wrapped in a leaf, filled with chorizo and hogao, on a wooden table with a woven textile."></div>
+            <div class="dish-body">
+              <h3>Mültrün with hogao</h3>
+              <p class="label">Ingredients</p>
+              <p>Corn (choclo) humita wrapped in a leaf, filled with Antioquian chorizo and hogao.</p>
+              <p class="label">What it fuses</p>
+              <p>Mapuche mültrün + paisa flavors.</p>
+            </div>
+          </article>
+          <article class="dish" data-reveal style="--delay:.2s">
+            <div class="thumb"><img src="assets/images/dish-sancocho-winoy.jpg" width="800" height="597" loading="lazy" decoding="async" alt="A clay bowl of sancocho with lamb, potato, corn on the cob and pine nuts."></div>
+            <div class="dish-body">
+              <h3>Sancocho Wiñoy</h3>
+              <p class="label">Ingredients</p>
+              <p>Lamb, potato, yuca, plantain, corn on the cob and araucaria pine nuts (piñones).</p>
+              <p class="label">What it fuses</p>
+              <p>Antioquian sancocho + Mapuche lamb and pine nut.</p>
+            </div>
+          </article>
+          <article class="dish" data-reveal style="--delay:.3s">
+            <div class="thumb"><img src="assets/images/dish-natilla-pinon.jpg" width="800" height="597" loading="lazy" decoding="async" alt="A slice of natilla topped with crushed pine nuts, with cinnamon sticks and pine nuts around the plate."></div>
+            <div class="dish-body">
+              <h3>Pine nut natilla</h3>
+              <p class="label">Ingredients</p>
+              <p>Cornstarch natilla with panela, cinnamon and crushed pine nut, with honey.</p>
+              <p class="label">What it fuses</p>
+              <p>Colombian natilla + pine nut from southern Chile.</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="subhead">Fusion drinks</h3>
+        <div class="dish-grid">
+          <article class="dish tall" data-reveal>
+            <div class="thumb"><img src="assets/images/drink-fuego-nuevo.jpg" width="640" height="857" loading="lazy" decoding="async" alt="A warm drink with a cinnamon stick held in a hand, with a bonfire and people in the background at sunrise."></div>
+            <div class="dish-body">
+              <h3><span class="flicker" aria-hidden="true">🔥</span> Fuego Nuevo</h3>
+              <span class="badge alc">With alcohol</span>
+              <p class="label">Ingredients</p>
+              <p>Antioquian aguardiente, apple chicha, cinnamon and clove, served warm.</p>
+              <p class="label">What it fuses</p>
+              <p>Paisa aguardiente + apple chicha from southern Chile.</p>
+            </div>
+          </article>
+          <article class="dish tall" data-reveal style="--delay:.1s">
+            <div class="thumb"><img src="assets/images/drink-silleta-fresca.jpg" width="640" height="857" loading="lazy" decoding="async" alt="A tall glass of deep red lulo and maqui drink with mint and an edible magenta flower, surrounded by petals."></div>
+            <div class="dish-body">
+              <h3>Silleta Fresca</h3>
+              <span class="badge">Alcohol-free</span>
+              <p class="label">Ingredients</p>
+              <p>Lulo and maqui juice, ice and mint leaves; decorated with an edible flower.</p>
+              <p class="label">What it fuses</p>
+              <p>Fruits of Colombia + a native fruit of Chile.</p>
+            </div>
+          </article>
+          <article class="dish tall" data-reveal style="--delay:.2s">
+            <div class="thumb"><img src="assets/images/drink-muday-panela.jpg" width="640" height="857" loading="lazy" decoding="async" alt="A steaming clay mug of muday with cinnamon, next to colorful corn cobs and a block of panela on a woven textile."></div>
+            <div class="dish-body">
+              <h3>Muday with panela</h3>
+              <span class="badge alc">Traditional: low alcohol</span>
+              <span class="badge">Unfermented: alcohol-free</span>
+              <p class="label">Traditional version</p>
+              <p>Fermented muday of wheat or toasted corn, sweetened with panela and cinnamon, served hot. Low alcohol content (about 1–3% depending on the recipe).</p>
+              <p class="label">Unfermented version</p>
+              <p>Toasted corn muday, not fermented, sweetened with panela and cinnamon, served hot. For children and people who do not drink alcohol.</p>
+              <p class="label">What it fuses</p>
+              <p>Mapuche muday + Colombian aguapanela.</p>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="subhead">Guest dishes and drinks from Colombia</h3>
+        <p data-reveal>
+          Our partners in Colombia shared real facts about their traditional food and drinks. They join the
+          Gastronomic Route (day 8) as guests.
+          <strong>The cultural facts are real; the way they are used in the festival is a design proposal.</strong>
+        </p>
+        <div class="contrib-grid" style="margin-top:20px">
+          <article class="contrib" data-reveal>
+            <h3>🍲 Sancocho de gallina</h3>
+            <div class="real"><p class="label">Real fact</p><p>A typical dish of Cali and the Valle del Cauca. It is made with hen, green plantain, yuca and corn on the cob, among other ingredients; recipes vary.</p></div>
+            <div class="festival"><p class="label">In Wiñoy Flor</p><p>Guest dish at the Gastronomic Route (day 8), next to the Sancocho Wiñoy (lamb and pine nut). It lets you compare two versions of sancocho: the one from the Valle del Cauca and the one from Wiñoy Flor.</p></div>
+          </article>
+          <article class="contrib" data-reveal style="--delay:.1s">
+            <h3>🥤 Guarapo</h3>
+            <div class="real"><p class="label">Real fact</p><p>A sweet, refreshing drink made from freshly squeezed sugarcane juice. It is served cold with ice and lime, and sometimes left to ferment slightly, which gives it a stronger, more traditional flavor. It is very popular in rural areas and at local festivals.</p></div>
+            <div class="festival"><p class="label">In Wiñoy Flor</p><p>New drink <strong>“Guarapo Wiñoy”</strong> at the Gastronomic Route (day 8): cold with lime in Medellín, warm with lime and cinnamon in Temuco. The fresh version is alcohol-free; the slightly fermented one is for adults only, following the same logic as the two versions of muday.</p></div>
+          </article>
+          <article class="contrib" data-reveal>
+            <h3>🍹 Lulada</h3>
+            <div class="real"><p class="label">Real fact</p><p>A very cold, sweet drink made with lulo, lime, sugar and water. The lulo pulp is chopped by hand.</p></div>
+            <div class="festival"><p class="label">In Wiñoy Flor</p><p>The Silleta Fresca already has lulo: it can be prepared lulada-style, with hand-chopped pulp, lime and maqui.</p></div>
+          </article>
+          <article class="contrib" data-reveal style="--delay:.1s">
+            <h3>🌽 Champús</h3>
+            <div class="real"><p class="label">Real fact</p><p>A drink from the Valle del Cauca with cooked corn, lulo, pineapple and panela; every family has its own recipe.</p></div>
+            <div class="festival"><p class="label">In Wiñoy Flor</p><p>Guest drink at the Gastronomic Route (day 8). It shares corn and panela with the Muday with panela.</p></div>
+          </article>
+        </div>
+
+        <div class="note" data-reveal>
+          <h3>A note about muday</h3>
+          <p>
+            Traditional Mapuche muday is a fermented grain drink (wheat, corn and others) offered in
+            ceremonies such as the nguillatún. That is why Wiñoy Flor has <strong>both versions</strong>: the
+            fermented one, faithful to tradition, and the unfermented one. See the justification in the
+            <a href="#respect">Respect</a> section.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CULTURE ===================== -->
+    <section class="band" id="culture">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">People and traditions</div>
+          <h2>Characters, music, dance and clothing</h2>
+        </div>
+
+        <div class="char-grid">
+          <article class="char" data-reveal>
+            <div class="thumb"><img src="assets/images/char-silletero.jpg" width="640" height="857" loading="lazy" decoding="async" alt="A silletero in a ruana and hat standing in front of a large disc of flowers on a mountain path at sunrise."></div>
+            <div class="char-body">
+              <h3>Silletero / Silletera Wiñoy</h3>
+              <p>Carries a silleta decorated with Mapuche symbols and leads the parade.</p>
+            </div>
+          </article>
+          <article class="char" data-reveal style="--delay:.1s">
+            <div class="thumb"><img src="assets/images/char-guardiana.jpg" width="640" height="857" loading="lazy" decoding="async" alt="A Mapuche woman with a kultrún and silver jewelry standing by a bonfire in the mist."></div>
+            <div class="char-body">
+              <h3>Guardian of the New Fire</h3>
+              <p>A woman with a kultrún and a trarilonko; she guides the dawn ceremony and lights the fire.</p>
+            </div>
+          </article>
+          <article class="char" data-reveal style="--delay:.2s">
+            <div class="thumb"><img src="assets/images/char-petalo.jpg" width="640" height="853" loading="lazy" decoding="async" alt="Pétalo, a smiling magenta flower mascot with a glowing center, standing on a woven textile."></div>
+            <div class="char-body">
+              <h3>Pétalo, the mascot</h3>
+              <p>The official mascot, a smiling flower born from the New Fire. It appears on posters, games and children’s workshops.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="panel-grid">
+          <article class="panel" data-reveal>
+            <h3>🎶 Music</h3>
+            <p>
+              The music mixes the instruments of both peoples: the <strong>tiple</strong> and the guitar of
+              paisa trova with the Mapuche <strong>kultrún</strong>, <strong>trutruka</strong> and
+              <strong>pifilka</strong>. <em>Ül</em> singing joins the paisa coplas.
+            </p>
+          </article>
+          <article class="panel" data-reveal style="--delay:.1s">
+            <h3>💫 Dance</h3>
+            <p>
+              The main dance is the <strong>Dance of the New Sun</strong>: a circle of dancers, inspired by
+              the Mapuche <em>purrún</em>, that turns around the fire while the silleteros advance to the
+              rhythm of the music. Everyone can join.
+            </p>
+          </article>
+          <article class="panel" data-reveal style="--delay:.2s">
+            <h3>🧣 Clothing</h3>
+            <p>
+              Silleteros wear the <strong>aguadeño hat</strong> and a <strong>paisa ruana woven with Mapuche
+              motifs</strong>. Mapuche women wear the silver <strong>trarilonko</strong> adorned with flowers.
+              Silletas carry kultrún patterns and the colors of both flags.
+            </p>
+          </article>
+        </div>
+
+        <h3 class="subhead">Contributions from Colombia: clothing, music and a guest city</h3>
+        <p data-reveal>
+          Shared by our partners in Colombia.
+          <strong>The cultural facts are real; the way they are used in the festival is a design proposal.</strong>
+        </p>
+        <div class="contrib-grid" style="margin-top:20px">
+          <article class="contrib" data-reveal>
+            <h3>🧣 Ruana</h3>
+            <div class="real"><p class="label">Real fact</p><p>An Andean garment of thick, handwoven sheep’s wool that protects from the cold of the mountains. It is an important symbol of Colombian peasant and Andean culture.</p></div>
+            <div class="festival"><p class="label">In Wiñoy Flor</p><p>It is already part of the festival’s clothing (“paisa ruana woven with Mapuche motifs”). Now its origin and its use as a warm layer are explained, which is very useful in Temuco’s winter (~3–12 °C).</p></div>
+          </article>
+          <article class="contrib" data-reveal style="--delay:.1s">
+            <h3>💃 Feria de Cali</h3>
+            <div class="real"><p class="label">Real fact</p><p>It is held from December 25 to 30. It starts with the <strong>Salsódromo</strong>, a huge parade of dancers, and fills the city with salsa and rumba.</p></div>
+            <div class="festival"><p class="label">In Wiñoy Flor</p><p>Cali is not a venue: its fair is in December and Wiñoy Flor is in June. It takes part as a <strong>symbolic guest city</strong> at the fusion concerts (day 6).</p></div>
+          </article>
+          <article class="contrib" data-reveal style="--delay:.2s">
+            <h3>🎺 Salsa and Grupo Niche</h3>
+            <div class="real"><p class="label">Real fact</p><p>Salsa is the emblematic music of Cali. “Cali Pachanguero”, by Grupo Niche, has been the official song of the Feria de Cali since 1984.</p></div>
+            <div class="festival"><p class="label">In Wiñoy Flor</p><p>Day 6: a <strong>“Salsa and kultrún night”</strong>, where Colombian salsa joins the kultrún and the trutruka. Salsa is already among the genres at the Feria de las Flores concerts.</p></div>
+          </article>
+        </div>
+
+        <div class="note" data-reveal>
+          <h3>The ruana and the poncho: similar garments, but different</h3>
+          <p>
+            The ruana and the poncho are very similar woolen garments, but <strong>they are not the
+            same</strong>. According to the sources consulted, the ruana is an Andean garment of thick sheep’s
+            wool, handwoven and open at the front, while the poncho is characterized by an opening to pass the
+            head through. Names also change by region: in Antioquia a ruana is sometimes called a
+            &ldquo;poncho&rdquo;. We found no single official definition, so the festival treats each garment
+            separately. At Wiñoy Flor the word <strong>ruana</strong> is used for the paisa garment, with
+            Mapuche designs, and it is not mixed with the poncho. It keeps you warm especially in Temuco’s
+            winter.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RESPECT ===================== -->
+    <section class="band tint" id="respect">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">Cultural respect</div>
+          <h2>Why the fusion makes sense</h2>
+        </div>
+        <p data-reveal>
+          This section explains why the most delicate decisions of the festival make sense within both
+          traditions. When a fact comes from a source, it is said; when we did not find a reliable source,
+          it is described as a design proposal.
+        </p>
+
+        <details class="acc" open data-reveal>
+          <summary>7.1 Joining a ceremony with a festive parade</summary>
+          <div class="acc-body">
+            <p>
+              We Tripantu is not only an intimate act: it is described as the Mapuche New Year and the return
+              of the sun, with a rogativa at dawn, and today it is also celebrated in public spaces organized
+              by institutions and Indigenous communities during solstice week. The Feria de las Flores, for
+              its part, is a public parade that closes with the silleteros.
+            </p>
+            <p>
+              Wiñoy Flor does not mix both moments into one: the <strong>dawn ceremony</strong> (day 1) is led
+              by the host Mapuche communities, and the <strong>festive parade</strong> takes place during the
+              day (day 10). The two symbols, the silleta and the kultrún, are combined visually, without
+              altering the meaning of the ceremony.
+            </p>
+          </div>
+        </details>
+
+        <details class="acc" data-reveal>
+          <summary>7.2 The name “Weichafes del Sol”</summary>
+          <div class="acc-body">
+            <p>
+              <em>Weichafe</em> means &ldquo;warrior&rdquo; in Mapudungun, and <em>weichan</em> is the
+              struggle. Beyond its military sense, the weichafe has a ritual role: in communities such as
+              Lumaco and Traiguén, weichafes represent in the nguillatún the weichan, or fight of the winds
+              before the harvest, and are considered protectors of the land.
+            </p>
+            <p>
+              Calling those who accompany the parade &ldquo;Weichafes of the Sun&rdquo; is justified this way:
+              they are the guardians who protect the return of the sun, just as the weichafe protects their
+              community.
+            </p>
+            <p>
+              <strong>Clarification:</strong> today the term is also used in political contexts (for example,
+              the name of an armed group), so the festival uses it only in its ceremonial and cultural sense,
+              and the use of the name should be agreed with the host communities.
+            </p>
+          </div>
+        </details>
+
+        <details class="acc" data-reveal>
+          <summary>7.3 Drinks with alcohol</summary>
+          <div class="acc-body">
+            <p>
+              <strong>Muday.</strong> Sources describe muday as a traditional Mapuche drink fermented from
+              grains (wheat, corn and others), low in alcohol (around 1–3% depending on the recipe), offered
+              at the nguillatún. At a ceremony at Universidad Austral de Chile, <em>mudai</em> (wheat chicha)
+              was placed with seeds under a canelo tree during the rogativa to the east. That is why the
+              festival includes the fermented muday, faithful to tradition, and an unfermented version for
+              children and people who do not drink alcohol.
+            </p>
+            <p>
+              <strong>Fuego Nuevo.</strong> It mixes Antioquian aguardiente (a traditional paisa drink) with
+              apple chicha from southern Chile. We did not find a reliable source linking apple chicha to We
+              Tripantu, so it is a <strong>design proposal</strong>: a festive toast that unites one drink
+              from each country, served warm for Temuco’s cold weather. An alcohol-free alternative exists
+              (Silleta Fresca).
+            </p>
+          </div>
+        </details>
+
+        <details class="acc" data-reveal>
+          <summary>7.4 What is invented and what is not</summary>
+          <div class="acc-body">
+            <p>
+              The legend, Pétalo, the Dance of the New Sun and the fusion dishes are <strong>new
+              creations</strong>. The Mapuche symbols (kultrún, trarilonko, purrún) and the paisa ones
+              (silleta, ruana, aguadeño hat) are used as <strong>real elements</strong> of each culture and
+              are represented faithfully and respectfully.
+            </p>
+          </div>
+        </details>
+
+        <details class="acc" data-reveal>
+          <summary>7.5 Guest contributions from Colombia: what does not change</summary>
+          <div class="acc-body">
+            <ul class="checklist">
+              <li><strong>Dates and venues:</strong> the festival is still June 21–30 in Medellín and Temuco. The Feria de Cali takes place in December, so Cali only takes part as a guest city.</li>
+              <li><strong>The ceremony:</strong> the New Fire (day 1) and the rogativa are led by the host Mapuche communities, as explained in 7.1. There is no salsa, guarapo or guest sancocho there: the contributions are used only in festive activities (days 6 and 8).</li>
+              <li><strong>Alcohol:</strong> slightly fermented guarapo is for adults only and always has an alcohol-free alternative, like muday and Fuego Nuevo.</li>
+              <li><strong>Real and invented:</strong> the cultural facts shared by our partners are real. “Guarapo Wiñoy”, the “Salsa and kultrún night” and Cali as a guest city are new creations of the festival.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===================== SUSTAINABILITY ===================== -->
+    <section class="band" id="sustainability">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">Caring for the planet</div>
+          <h2>Sustainable practices</h2>
+        </div>
+        <p data-reveal>
+          Wiñoy Flor has one main sustainable practice and several complementary ones. All of them are
+          <strong>design proposals</strong>: they rely on real problems and programs, which are cited with
+          their sources, but we do not claim that they already exist at the original festivals.
+        </p>
+
+        <div class="practice" style="margin-top:34px">
+          <div data-reveal>
+            <span class="badge main">Main practice</span>
+            <h3>🌱 Flowers that return to the earth</h3>
+            <p><span class="lbl">What it is.</span> After the Grand Parade of Silleteros and Weichafes of the Sun, and at the end of every activity with flowers, no flower is thrown away. Flowers and foliage from the silletas are sorted by condition: fresh ones are given to families, care homes and host communities; those that can be dried are reused in craft workshops; and the rest goes to composting to become fertilizer.</p>
+            <p><span class="lbl">How it works.</span> Each venue has an <strong>“Earth Point”</strong> (<em>Punto de la Tierra</em>), a drop-off zone run by volunteers, silleteros and communities. Silleteros deliver their dismantled silletas there. The resulting compost goes back to the silletero families of Santa Elena, the Botanical Garden and the gardens of the community ruka in Temuco, so that the land that gave the flowers gets something in return.</p>
+            <p><span class="lbl">Why it helps.</span> Flowers are organic waste: if they end up in a landfill they decompose without being used, while composting turns them into fertilizer and reduces the festival’s trash. The practice builds on capacities that already exist: the Mayor’s Office of Medellín composts organic waste in its waste management programs, and the city’s cleaning company prepares a special operation after the Silleteros Parade to leave the streets clean. We did not find a source explaining what is done today with the flowers of the silletas, so this part is a proposal.</p>
+            <p><span class="lbl">Cultural meaning.</span> In We Tripantu, the renewal of the cycle is understood as a commitment to care for Ñuke Mapu, Mother Earth. Returning the flowers to the earth unites both cultures: the silletero hands over the flower he grew and the earth gives it back as fertilizer, just as in the festival’s legend, where Ñuke Mapu and the silletero light the New Fire together.</p>
+          </div>
+          <figure class="figure" data-reveal>
+            <img src="assets/images/sustain-flowers-to-earth.jpg" width="1200" height="509" loading="lazy" decoding="async"
+                 alt="Silleteros dismantling a flower silleta next to wooden compost bins, with families planting a vegetable garden at sunrise.">
+            <figcaption>Flowers that return to the earth</figcaption>
+          </figure>
+        </div>
+
+        <div class="practice flip">
+          <div data-reveal>
+            <span class="badge">Complementary practice</span>
+            <h3>💧 Water guardians</h3>
+            <p><span class="lbl">What it is.</span> Before the festival, communities, volunteers and students from both countries clean and care for a nearby water source at each venue: the Santa Elena creek, which crosses Medellín, and the bank of the Cautín River and its wetlands in Temuco. The days open with a short greeting to the water, led by the Mapuche communities and the silletero families.</p>
+            <p><span class="lbl">How it works.</span> The days are held together with what already exists, not in place of it. In Medellín, the Mayor’s Office has already worked on the Santa Elena creek and maintains the city’s creeks. In Temuco, neighborhood organizations have drawn attention to the trash on the Cautín bank, the municipality reports cleanup operations, and volunteer days have already been held in wetlands. The festival would join these efforts and make them visible, without promising to clean an entire river.</p>
+            <p><span class="lbl">Why it helps and what it means.</span> Water is central to We Tripantu: many families bathe in rivers or streams at dawn to renew themselves, and several sources link this to the commitment to care for nature. Caring for the water before the festival makes that ritual gesture happen in cared-for water, and also protects the surroundings that tourists visit.</p>
+          </div>
+          <figure class="figure" data-reveal>
+            <img src="assets/images/sustain-water-guardians.jpg" width="1200" height="509" loading="lazy" decoding="async"
+                 alt="Volunteers in hats and ruanas cleaning a flowery river bank at dawn while a Mapuche elder offers a greeting to the water.">
+            <figcaption>Water guardians</figcaption>
+          </figure>
+        </div>
+
+        <div class="practice">
+          <div data-reveal>
+            <span class="badge">Complementary practice</span>
+            <h3>📡 Live simultaneous festival</h3>
+            <p><span class="lbl">What it is.</span> Because Wiñoy Flor takes place at the same time in Medellín and Temuco, nobody needs to cross the continent to share the New Fire ceremony, the storytelling night or the grand parade: each person lives the festival in their own city and meets the other venue through screens.</p>
+            <p><span class="lbl">Why it helps.</span> Studies on virtual and hybrid events show that replacing long trips greatly reduces an event’s emissions, although the energy used by streaming and screen fatigue should be taken into account. That is why the festival remains in person at each venue and the live link is used only at key moments.</p>
+          </div>
+          <figure class="figure" data-reveal>
+            <img src="assets/images/sustain-live-festival.jpg" width="1200" height="509" loading="lazy" decoding="async"
+                 alt="Families in Medellín and a Mapuche community around a bonfire in Temuco greeting each other through giant screens under a golden arc.">
+            <figcaption>Live simultaneous festival</figcaption>
+          </figure>
+        </div>
+
+        <div class="note" data-reveal>
+          <p style="margin:0">
+            <strong>The practices reinforce each other:</strong> flowers return to the earth, the water that
+            irrigates that earth is cared for, and the live link avoids unnecessary trips.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FUTURE ===================== -->
+    <section class="band" id="future">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">What comes next</div>
+          <h2>Future implementations</h2>
+        </div>
+        <div class="soon" data-reveal style="--delay:.1s">
+          <p class="sprout" aria-hidden="true">🌱</p>
+          <p><strong>Coming soon!</strong></p>
+          <p>Wiñoy Flor keeps growing. New features and surprises are on the way.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SOURCES ===================== -->
+    <section class="band tint" id="sources">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <div class="eyebrow">Where the information comes from</div>
+          <h2>Sources consulted</h2>
+        </div>
+
+        <details class="acc" data-reveal>
+          <summary>Sources for the festival design</summary>
+          <div class="acc-body">
+            <ul class="sources">
+              <li>Silleteros Parade 2026 (closes the Feria de las Flores) – Canal Trece: <a href="https://canaltrece.com.co/editorial/desfile-de-silleteros-2026-fecha-recorrido-horario-y-como-verlo/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>The silleteros parade will close the Feria de las Flores 2025 – Blu Radio: <a href="https://www.bluradio.com/regiones/antioquia/desfile-de-silleteros-cerrara-la-feria-de-las-flores-2025-asi-sera-el-recorrido-rg10" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Celebration of the Mapuche New Year at UACh (rogativa and mudai): <a href="https://diario.uach.cl/con-diversas-actividadescelebran-ao-nuevo-mapuche-en-uach/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Weichafe – Wikipedia: <a href="https://en.wikipedia.org/wiki/Weichafe" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Wheat muday, ancestral Mapuche beer – The Beer Times: <a href="https://www.thebeertimes.com/en/wheat-muday-recipe-ancestral-mapuche-beer/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Gastronomy and food of the Mapuche – Marca Chile: <a href="https://www.marcachile.cl/en/gastronomia-alimentacion-de-los-mapuches/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>National Day of Indigenous Peoples in Chile – Calendario Chile: <a href="https://www.calendariochile.com/fechas/dia-nacional-de-los-pueblos-indigenas-en-chile" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Integrated waste management (composting of organic waste) – Alcaldía de Medellín: <a href="https://www.medellin.gov.co/es/secretaria-suministros-y-servicios/politica-sostenibilidad/gestion-integral-de-residuos-de-la-alcaldia-de-medellin/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Cleaning operation for the Silleteros Parade – Telemedellín: <a href="https://telemedellin.tv/emvarias-en-el-desfile-de-silleteros-2026/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Intervention in the Santa Elena creek – Alcaldía de Medellín: <a href="https://www.medellin.gov.co/es/sala-de-prensa/noticias/la-alcaldia-de-medellin-interviene-la-quebrada-santa-elena-y-el-entorno-del-museo-casa-de-la-memoria/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Intervention in creeks in Medellín – Alcaldía de Medellín: <a href="https://www.medellin.gov.co/es/sala-de-prensa/noticias/el-distrito-interviene-27-quebradas-para-prevenir-inundaciones-y-proteger-el-medio-ambiente/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Environmental damage complaint on the Cautín River – BioBioChile: <a href="https://www.biobiochile.cl/noticias/nacional/region-de-la-araucania/2026/07/30/organizacion-denuncia-dano-ambiental-en-rio-cautin-acusan-inaccion-de-municipalidad-de-temuco.shtml" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Temuco wetlands cleanup day – El Desconcierto: <a href="https://eldesconcierto.cl/2024/10/18/vertedero-ilegal-y-aguas-servidas-sumate-a-la-jornada-de-limpieza-de-humedales-de-temuco" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>We Tripantu, ancestral worldview and ecosystem conservation – El Mostrador: <a href="https://www.elmostrador.cl/noticias/opinion/2022/06/21/we-tripantu-cosmovision-ancestral-y-conservacion-de-ecosistemas/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Mapuche solstice ceremonies and sacred rivers – Town &amp; Country Today: <a href="https://www.townandcountrytoday.com/lifestyle/mapuche-solstice-ceremonies-highlight-sacred-rivers-5720259" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Climate benefits of a virtual format versus an in-person one (study) – PubMed Central: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9294792/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Virtual conferences significantly cut emissions – Marketplace: <a href="https://marketplace.org/2021/12/27/virtual-conferences-significantly-cut-greenhouse-gas-emissions" target="_blank" rel="noopener noreferrer">link</a></li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="acc" data-reveal>
+          <summary>Sources for the contributions from Colombia</summary>
+          <div class="acc-body">
+            <ul class="sources">
+              <li>Cultural information shared by COIL partners in Colombia (guarapo, ruana and Cali).</li>
+              <li>Guarapo (drink) – Wikipedia: <a href="https://en.wikipedia.org/wiki/Guarapo_(drink)" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Ruana – Wikipedia: <a href="https://en.wikipedia.org/wiki/Ruana" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Ponchos and ruanas, between artisan tradition and the challenges of the global market – Agronegocios: <a href="https://www.agronegocios.co/agricultura/ponchos-y-ruanas-entre-la-tradicion-artesanal-y-los-retos-del-mercado-global-4163413" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>The ruana, a Colombian peasant symbol – Voz de América: <a href="https://www.vozdeamerica.com/a/la-ruana-simbolo-campesino-colombiano-que-ha-vestido-grandes-personalidades/7121755.html" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>History of the Tolima poncho (ruana and poncho in Antioquia) – Radio Nacional de Colombia: <a href="https://radionacional.co/cultura/tradiciones/historia-del-poncho-tolimense" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Salsódromo, one of the most awaited events of the Feria de Cali – Alcaldía de Cali: <a href="https://www.cali.gov.co/publicaciones/184244/salsodromo-uno-de-los-eventos-mas-esperados-de-la-feria-de-cali/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Feria de Cali 2025 program (December 25 to 30) – El Espectador: <a href="https://www.elespectador.com/turismo/programacion-de-la-feria-de-cali-2025-por-dias-eventos-invitados-y-conciertos/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>The unforgettable songs of Grupo Niche (“Cali Pachanguero”, official song of the Feria de Cali) – Radio Nacional de Colombia: <a href="https://www.radionacional.co/noticia/noche-radio-nacional/las-inolvidables-del-grupo-niche" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Lulada – Wikipedia: <a href="https://en.wikipedia.org/wiki/Lulada" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Champús, a culinary jewel of Cali – Alcaldía de Cali: <a href="https://www.cali.gov.co/turismo/publicaciones/177191/el-champus-una-joya-culinaria-resguardada-en-el-corazon-de-cali/" target="_blank" rel="noopener noreferrer">link</a></li>
+              <li>Differences between the Valle sancocho and the trifásico – Pulzo: <a href="https://www.pulzo.com/vivir-bien/diferencias-sancocho-valluno-sancocho-trifasico-colombia-PP3938000A" target="_blank" rel="noopener noreferrer">link</a></li>
+            </ul>
+          </div>
+        </details>
       </div>
     </section>
 
   </main>
 
   <footer class="site-footer" id="credits">
-    <p><strong>Credits</strong></p>
-    <p>Wiñoy Flor is a fictional festival created for the COIL project between Colombia and Chile.</p>
-    <p>It is inspired by two real celebrations: the Feria de las Flores (Colombia) and We Tripantu (Chile).</p>
-    <!-- Pending: link to the digital version of the infographic -->
+    <div class="wrap wrap-wide">
+      <div class="footer-grid">
+
+        <!-- Column 1: about, credits and share -->
+        <div class="f-about" data-reveal>
+          <h2>Wiñoy Flor</h2>
+          <p>A fictional binational festival of the new sun and the flowers, celebrated in Medellín (Colombia) and Temuco (Chile).</p>
+          <p class="f-small">It is a fictional festival created for the COIL project between Colombia and Chile, inspired by two real celebrations: the Feria de las Flores (Colombia) and We Tripantu (Chile).</p>
+          <p class="f-small">The images of this site were generated with artificial intelligence. The information about guarapo, ruana and Cali was shared by COIL partners in Colombia.</p>
+          <!-- Pending: link to the digital version of the infographic -->
+
+          <!-- Share: the QR code opens the address in data-share-url.
+               For now it is this page; replace it with the infographic address later. -->
+          <div class="share" data-share-url="https://benjaminneiraneira.github.io/winoy-flor/">
+            <button class="share-btn" type="button" aria-expanded="false" aria-controls="share-menu">
+              <span aria-hidden="true">📲</span> Share
+            </button>
+            <div class="share-menu" id="share-menu" role="dialog" aria-label="Share this page" hidden>
+              <p class="share-title">Scan to open the page</p>
+              <div class="share-qr" id="share-qr" aria-live="polite"></div>
+              <p class="share-url" id="share-url"></p>
+              <div class="share-actions">
+                <button type="button" id="copy-link">Copy link</button>
+                <button type="button" id="native-share" hidden>Share…</button>
+              </div>
+              <p class="share-status" id="share-status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: navigation -->
+        <nav class="f-nav" aria-label="Footer navigation" data-reveal style="--delay:.1s">
+          <h2>Navigation</h2>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#facts">Facts</a></li>
+            <li><a href="#program">Program</a></li>
+            <li><a href="#food">Food &amp; drinks</a></li>
+            <li><a href="#culture">Culture</a></li>
+            <li><a href="#respect">Respect</a></li>
+            <li><a href="#sustainability">Sustainability</a></li>
+            <li><a href="#future">Future implementations</a></li>
+            <li><a href="#sources">Sources</a></li>
+          </ul>
+        </nav>
+
+        <!-- Column 3: interactive map of the venues -->
+        <div class="f-map" data-reveal style="--delay:.2s">
+          <h2>Venues</h2>
+          <div class="map-switch" role="group" aria-label="Choose the country">
+            <button type="button" data-country="co" aria-pressed="true">Colombia</button>
+            <button type="button" data-country="cl" aria-pressed="false">Chile</button>
+          </div>
+          <div class="map-box">
+            <a class="map-open" href="https://www.google.com/maps/search/?api=1&amp;query=6.26818,-75.56617" target="_blank" rel="noopener noreferrer">Open in Maps ↗</a>
+            <div id="venue-map" role="region" aria-label="Interactive map of the festival venues"></div>
+          </div>
+          <p class="map-caption" id="map-caption"></p>
+          <noscript><p class="map-caption">The interactive map needs JavaScript. Venues: Medellín (Santa Elena, Botanical Garden, Parque de los Deseos) and Temuco (Cerro Ñielol, Plaza Teodoro Schmidt).</p></noscript>
+        </div>
+
+      </div>
+
+      <hr class="footer-divider">
+      <p class="f-copy">© 2026 Wiñoy Flor · A fictional festival for the COIL project between Colombia and Chile.</p>
+    </div>
   </footer>
 
+  <button class="to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script src="assets/vendor/leaflet/leaflet.js" defer></script>
+  <script src="assets/vendor/qrcode/qrcode.js" defer></script>
+  <script src="js/theme.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/effects.js" defer></script>
+  <script src="js/map.js" defer></script>
+  <script src="js/share.js" defer></script>
 </body>
 </html>

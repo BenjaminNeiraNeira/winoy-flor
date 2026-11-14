@@ -1,0 +1,914 @@
+/* ==========================================================================
+   Sections: styles for the content blocks of the Wiñoy Flor page
+   (stats, fact sheet, timeline, venues, tables, dishes, characters,
+   accordion, sustainability practices, Colombian contributions, sources)
+   ========================================================================== */
+
+.wrap {
+  max-width: 1040px;
+}
+
+/* ---- Section bands ---- */
+section.band {
+  padding: clamp(40px, 8vw, 64px) 0 clamp(36px, 7vw, 56px);
+}
+
+section.band.tint {
+  background: var(--leaf-tint);
+}
+
+.section-head {
+  margin-bottom: 26px;
+}
+
+.section-head .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.section-head h2 {
+  position: relative;
+  margin: 4px 0 0;
+  padding-bottom: 14px;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+}
+
+.section-head h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 96px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--card-top-1), var(--sun), var(--accent));
+  transition: width 0.9s ease 0.3s;
+}
+
+.js .section-head:not(.is-visible) h2::after {
+  width: 0;
+}
+
+.lead {
+  font-size: 1.08rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---- Figures ---- */
+.figure {
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.7s ease;
+}
+
+.figure:hover img {
+  transform: scale(1.05);
+}
+
+.figure figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 26px 16px 12px;
+  font-size: 0.88rem;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.62));
+  transform: translateY(4px);
+  transition: transform 0.4s ease;
+}
+
+.figure:hover figcaption {
+  transform: none;
+}
+
+/* ---- Stats ---- */
+.stats-band {
+  padding: 28px 0 0;
+}
+
+.stats {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+}
+
+.stat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 12px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.stat strong {
+  display: block;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  color: var(--heading);
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* ---- Two-column intro ---- */
+.split {
+  display: grid;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .split {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+/* ---- Legend quote and notes ---- */
+.legend {
+  margin: 26px 0 0;
+  padding: 22px 24px;
+  background: var(--card);
+  border-left: 5px solid var(--sun);
+  border-radius: 0 14px 14px 0;
+  box-shadow: var(--shadow);
+  font-style: italic;
+}
+
+.legend h3 {
+  margin: 0 0 8px;
+  font-style: normal;
+  color: var(--heading);
+}
+
+.legend p {
+  margin: 0;
+}
+
+.note {
+  margin: 22px 0 0;
+  padding: 16px 20px;
+  background: var(--leaf-tint);
+  border-left: 5px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+}
+
+section.tint .note {
+  background: var(--card);
+}
+
+.note h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: var(--heading);
+}
+
+.note p {
+  margin: 4px 0;
+}
+
+/* ---- Tables ---- */
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 26px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+
+.table-wrap h3 {
+  margin: 0;
+  padding: 14px 16px 4px;
+  color: var(--heading);
+}
+
+table.data {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+table.data th,
+table.data td {
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+table.data thead th {
+  background: var(--hero-start);
+  color: #fff;
+}
+
+table.data tbody tr:nth-child(even) {
+  background: var(--leaf-tint);
+}
+
+table.data tbody tr {
+  transition: background 0.25s ease;
+}
+
+table.data tbody tr:hover {
+  background: var(--accent-soft);
+}
+
+table.data tbody th {
+  white-space: nowrap;
+  color: var(--heading);
+}
+
+/* ---- Fact sheet ---- */
+.facts {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+}
+
+.fact {
+  display: flex;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+
+.fact.wide {
+  grid-column: 1 / -1;
+}
+
+/* Two-column cards only when the grid has at least three columns */
+@media (min-width: 940px) {
+  .fact.span2 {
+    grid-column: span 2;
+  }
+}
+
+.fact .ico {
+  flex: none;
+  font-size: 1.7rem;
+  line-height: 1.2;
+}
+
+.fact h3 {
+  margin: 0 0 2px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--heading);
+}
+
+.fact p {
+  margin: 2px 0;
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.swatch i {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+/* ---- Cards ---- */
+.card .kv {
+  margin: 4px 0;
+}
+
+.card .kv strong {
+  color: var(--heading);
+}
+
+.venues {
+  display: grid;
+  gap: 18px;
+  margin-top: 26px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+/* ---- Timeline ---- */
+.timeline {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(var(--card-top-1), var(--sun), var(--accent));
+}
+
+.tl-item {
+  position: relative;
+  padding: 0 0 22px 66px;
+}
+
+.tl-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--card);
+  border: 4px solid var(--card-top-1);
+  color: var(--heading);
+  font-weight: 800;
+  font-size: 0.8rem;
+  line-height: 1;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.tl-item.is-key .tl-marker {
+  border-color: var(--sun);
+  background: var(--sun);
+  color: #2B2118;
+}
+
+.tl-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+
+.tl-date {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.tl-card h3 {
+  margin: 2px 0 6px;
+}
+
+.tl-card p {
+  margin: 4px 0;
+}
+
+.guest {
+  margin-top: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  background: var(--accent-soft);
+  border-radius: 10px;
+}
+
+/* ---- Badges ---- */
+.badge {
+  display: inline-block;
+  margin: 2px 6px 2px 0;
+  padding: 2px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--heading);
+  background: var(--leaf-tint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.badge.alc {
+  color: var(--warn-ink);
+  background: var(--warn-bg);
+  border-color: transparent;
+}
+
+.badge.main {
+  color: var(--on-accent);
+  background: var(--accent);
+  border-color: transparent;
+}
+
+.badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  padding: 2px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-accent);
+  background: var(--accent);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.badge-live::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---- Dishes and drinks ---- */
+.dish-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+.dish {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.dish .thumb {
+  overflow: hidden;
+}
+
+.dish .thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.dish.tall .thumb img {
+  aspect-ratio: 4 / 5;
+}
+
+.dish:hover .thumb img {
+  transform: scale(1.08);
+}
+
+.dish-body {
+  padding: 14px 18px 18px;
+}
+
+.dish-body h3 {
+  margin: 0 0 6px;
+}
+
+.dish-body p {
+  margin: 4px 0;
+}
+
+.label {
+  margin-top: 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--heading);
+}
+
+.subhead {
+  margin: 44px 0 18px;
+  font-size: 1.3rem;
+  color: var(--heading);
+}
+
+/* ---- Characters ---- */
+.char-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.char {
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.char img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.char .thumb {
+  overflow: hidden;
+}
+
+.char:hover img {
+  transform: scale(1.06);
+}
+
+.char-body {
+  padding: 14px 18px 18px;
+}
+
+.char-body h3 {
+  margin: 0 0 6px;
+}
+
+.char-body p {
+  margin: 0;
+}
+
+.panel-grid {
+  display: grid;
+  gap: 18px;
+  margin-top: 26px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.panel {
+  padding: 20px 22px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--sun);
+  border-radius: 14px;
+}
+
+.panel h3 {
+  margin: 0 0 6px;
+  color: var(--heading);
+}
+
+.panel p {
+  margin: 4px 0;
+}
+
+/* ---- Accordion ---- */
+.acc {
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.acc summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px;
+  font-weight: 700;
+  color: var(--heading);
+  cursor: pointer;
+  list-style: none;
+}
+
+.acc summary::-webkit-details-marker {
+  display: none;
+}
+
+.acc summary::after {
+  content: "+";
+  margin-left: auto;
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.acc[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.acc summary:hover {
+  background: var(--leaf-tint);
+}
+
+.acc-body {
+  padding: 0 20px 18px;
+}
+
+.acc-body p {
+  margin: 8px 0;
+}
+
+/* ---- Sustainability practices ---- */
+.practice {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 860px) {
+  .practice {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .practice.flip .figure {
+    order: -1;
+  }
+
+  /* The picture stays in view while the text is read */
+  .practice .figure {
+    position: sticky;
+    top: 76px;
+  }
+}
+
+.practice h3 {
+  margin: 4px 0 10px;
+  font-size: 1.4rem;
+}
+
+.practice p {
+  margin: 8px 0;
+}
+
+.practice .lbl {
+  font-weight: 700;
+  color: var(--heading);
+}
+
+/* ---- Colombian contributions ---- */
+.contrib-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.contrib {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--card-top-1);
+  border-radius: 14px;
+}
+
+.contrib h3 {
+  margin: 0;
+}
+
+.contrib p {
+  margin: 2px 0 0;
+}
+
+.contrib .real,
+.contrib .festival {
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+
+.contrib .real {
+  background: var(--leaf-tint);
+}
+
+.contrib .festival {
+  background: var(--accent-soft);
+}
+
+.contrib .label {
+  margin: 0;
+}
+
+.checklist {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+.checklist li {
+  margin: 6px 0;
+}
+
+/* ---- Sources ---- */
+.sources {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.sources li {
+  margin: 6px 0;
+}
+
+/* ---- Scroll progress and back-to-top ---- */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--p, 0));
+  background: linear-gradient(90deg, var(--card-top-1), var(--sun), var(--accent));
+  z-index: 40;
+}
+
+.to-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  color: var(--on-primary);
+  background: var(--card-top-1);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  z-index: 30;
+}
+
+.to-top.show {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.to-top:hover,
+.to-top:focus {
+  color: var(--on-accent);
+  background: var(--accent);
+}
+
+/* ==========================================================================
+   Responsive adjustments
+   ========================================================================== */
+
+/* Tablets and small laptops */
+@media (max-width: 860px) {
+  .section-head {
+    margin-bottom: 20px;
+  }
+
+  .practice {
+    margin-bottom: 36px;
+  }
+}
+
+/* Phones: the comparison table becomes a list of cards */
+@media (max-width: 640px) {
+  .table-wrap {
+    overflow-x: visible;
+    background: transparent;
+    border: 0;
+  }
+
+  .table-wrap h3 {
+    padding: 0 0 8px;
+  }
+
+  table.data {
+    min-width: 0;
+  }
+
+  table.data thead {
+    display: none;
+  }
+
+  table.data,
+  table.data tbody,
+  table.data tr,
+  table.data th,
+  table.data td {
+    display: block;
+    width: 100%;
+  }
+
+  table.data tbody tr {
+    margin-bottom: 12px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  table.data tbody tr:nth-child(even) {
+    background: var(--card);
+  }
+
+  table.data tbody th {
+    padding: 10px 14px;
+    color: var(--on-primary);
+    background: var(--card-top-1);
+  }
+
+  table.data td {
+    padding: 8px 14px;
+    border-bottom: 0;
+  }
+
+  table.data td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--heading);
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .tl-item {
+    padding-left: 54px;
+  }
+
+  .timeline::before {
+    left: 17px;
+  }
+
+  .tl-marker {
+    width: 38px;
+    height: 38px;
+    border-width: 3px;
+    font-size: 0.7rem;
+  }
+
+  .tl-card {
+    padding: 12px 14px;
+  }
+
+  .legend,
+  .note {
+    padding: 14px 16px;
+  }
+
+  .fact {
+    padding: 14px;
+  }
+
+  .stat strong {
+    font-size: 2rem;
+  }
+
+  .dish-body,
+  .char-body {
+    padding: 12px 14px 16px;
+  }
+}
+
+/* Touch screens: no "lift" effects that stay stuck after a tap */
+@media (hover: none) {
+  .card:hover,
+  .fact:hover,
+  .stat:hover,
+  .tl-card:hover,
+  .dish:hover,
+  .char:hover,
+  .panel:hover,
+  .contrib:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,456 @@
+/* ==========================================================================
+   Animations for Wiñoy Flor
+   - Hero: glowing sun, falling petals and leaves, staggered entrance
+   - Scroll reveal (rise, slide-in for the timeline, image reveal)
+   - Timeline markers that pop in, pulsing "live" badges
+   - Hover effects, flickering fire, wiggling icons, floating sprout
+   Everything is switched off for visitors who prefer reduced motion.
+   ========================================================================== */
+
+/* ---- Hero: sun glow + petals and leaves ---- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  width: 440px;
+  height: 440px;
+  margin-left: -220px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--glow), 0.6) 0%,
+    rgba(var(--glow), 0.2) 45%,
+    transparent 70%
+  );
+  animation: sun-pulse 6s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero > .petals {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.petals span {
+  position: absolute;
+  top: 0;
+  left: calc(var(--i) * 7%);
+  width: 14px;
+  height: 18px;
+  background: linear-gradient(135deg, #ff80ab, #C2185B);
+  border-radius: 80% 0 80% 0;
+  opacity: 0;
+  animation: petal-fall calc(9s + var(--i) * 0.7s) linear infinite;
+  animation-delay: calc(var(--i) * -1.3s);
+}
+
+.petals span:nth-child(3n) {
+  width: 10px;
+  height: 13px;
+  background: linear-gradient(135deg, #ffe082, #F2A900);
+}
+
+.petals span:nth-child(4n) {
+  width: 18px;
+  height: 22px;
+}
+
+/* Green leaves among the petals */
+.petals span:nth-child(5n + 2) {
+  width: 16px;
+  height: 22px;
+  background: linear-gradient(135deg, #D7EBCB, #2E7D32);
+  border-radius: 0 85% 0 85%;
+}
+
+/* ---- Hero: staggered entrance ---- */
+.hero > .kicker,
+.hero > h1,
+.hero > .tagline,
+.hero > .chips {
+  animation: rise 0.9s ease backwards;
+}
+
+.hero > .kicker { animation-delay: 0.1s; }
+.hero > h1 { animation-delay: 0.3s; }
+.hero > .tagline { animation-delay: 0.5s; }
+.hero > .chips { animation-delay: 0.7s; }
+
+.chip {
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.chip:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ---- Scroll reveal (the "js" class is added by index.html) ---- */
+.js [data-reveal] {
+  opacity: 0;
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  animation: rise 0.8s ease backwards;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Timeline items slide in from the left */
+.js .tl-item[data-reveal].is-visible {
+  animation-name: slide-in;
+}
+
+/* Pictures are revealed from top to bottom */
+.js .figure[data-reveal].is-visible {
+  animation-name: img-reveal;
+  animation-duration: 1s;
+}
+
+/* ---- Timeline details ---- */
+.js .tl-item .tl-marker {
+  transform: scale(0);
+}
+
+.js .tl-item.is-visible .tl-marker {
+  transform: none;
+  animation: pop 0.7s cubic-bezier(0.2, 1.5, 0.4, 1) backwards;
+  animation-delay: calc(var(--delay, 0s) + 0.15s);
+}
+
+.tl-item.is-key.is-visible .tl-marker {
+  animation: pop 0.7s cubic-bezier(0.2, 1.5, 0.4, 1) backwards, glow-ring 2.8s ease-in-out 1s infinite;
+}
+
+.badge-live::before {
+  animation: live-dot 1.4s ease-in-out infinite;
+}
+
+/* ---- Hover effects ---- */
+.card,
+.fact,
+.stat,
+.tl-card,
+.dish,
+.char,
+.panel,
+.contrib,
+.acc {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover,
+.fact:hover,
+.stat:hover,
+.tl-card:hover,
+.dish:hover,
+.char:hover,
+.panel:hover,
+.contrib:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+.fact:hover .ico,
+.panel:hover h3::first-letter {
+  animation: wiggle 0.7s ease;
+}
+
+.fact .ico {
+  display: inline-block;
+}
+
+/* ---- Share menu and map ---- */
+.share-menu:not([hidden]) {
+  animation: menu-pop 0.4s cubic-bezier(0.2, 1.3, 0.4, 1);
+}
+
+.share-menu:not([hidden]) .share-qr svg {
+  animation: qr-in 0.6s ease 0.15s backwards;
+}
+
+.map-box {
+  transition: box-shadow 0.4s ease;
+}
+
+.map-box:hover {
+  box-shadow: var(--shadow);
+}
+
+.venue-pin span {
+  animation: pin-drop 0.7s cubic-bezier(0.3, 1.5, 0.5, 1) backwards;
+}
+
+/* ---- Fire and sprout ---- */
+.flicker {
+  display: inline-block;
+  animation: flicker 2.2s ease-in-out infinite;
+}
+
+.soon .sprout {
+  font-size: 2rem;
+  margin: 0 0 4px;
+  display: inline-block;
+  animation: bob 2.6s ease-in-out infinite;
+}
+
+/* ---- Keyframes ---- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-34px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes img-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes glow-ring {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(var(--glow), 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(var(--glow), 0);
+  }
+}
+
+@keyframes live-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.4;
+  }
+}
+
+@keyframes sun-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -30px, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(34px, 200px, 0) rotate(180deg);
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(-24px, 460px, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes menu-pop {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes qr-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pin-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-26px) rotate(-45deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-14deg) scale(1.15);
+  }
+  75% {
+    transform: rotate(12deg) scale(1.15);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 4px rgba(var(--glow), 0.6));
+  }
+  30% {
+    transform: scale(1.1) rotate(-4deg);
+    filter: drop-shadow(0 0 10px rgba(255, 120, 30, 0.8));
+  }
+  60% {
+    transform: scale(0.96) rotate(3deg);
+  }
+}
+
+/* ---- Smooth color change while the theme is switched (class added by theme.js) ---- */
+.theme-anim,
+.theme-anim *,
+.theme-anim *::before,
+.theme-anim *::after {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, fill 0.4s ease !important;
+}
+
+/* ---- Respect reduced-motion settings ---- */
+@media (prefers-reduced-motion: reduce) {
+  .share-menu:not([hidden]),
+  .share-menu:not([hidden]) .share-qr svg,
+  .venue-pin span,
+  .hero::before,
+  .soon .sprout,
+  .flicker,
+  .badge-live::before,
+  .tl-item.is-key.is-visible .tl-marker {
+    animation: none;
+  }
+
+  .petals {
+    display: none;
+  }
+
+  .hero > .kicker,
+  .hero > h1,
+  .hero > .tagline,
+  .hero > .chips,
+  .js [data-reveal].is-visible,
+  .js .tl-item[data-reveal].is-visible,
+  .js .figure[data-reveal].is-visible,
+  .js .tl-item.is-visible .tl-marker {
+    animation: none;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+  }
+
+  .js .tl-item .tl-marker {
+    transform: none;
+  }
+
+  .main-nav ul,
+  .main-nav li,
+  .card,
+  .fact,
+  .stat,
+  .tl-card,
+  .dish,
+  .char,
+  .panel,
+  .contrib,
+  .acc,
+  .chip,
+  .figure img,
+  .dish .thumb img,
+  .char img {
+    transition: none;
+  }
+
+  .card:hover,
+  .fact:hover,
+  .stat:hover,
+  .tl-card:hover,
+  .dish:hover,
+  .char:hover,
+  .panel:hover,
+  .contrib:hover,
+  .chip:hover,
+  .figure:hover img,
+  .dish:hover .thumb img,
+  .char:hover img {
+    transform: none;
+  }
+
+  .fact:hover .ico {
+    animation: none;
+  }
+}

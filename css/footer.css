@@ -1,0 +1,342 @@
+/* ==========================================================================
+   Footer / credits
+   Three columns (about + share, navigation, venue map), a divider and a
+   centered copyright line. Colors come from variables.css.
+   ========================================================================== */
+
+.site-footer {
+  margin-top: 0;
+  padding: 56px 0 28px;
+  color: var(--footer-ink);
+  background: var(--footer-bg);
+  border-top: 1px solid var(--footer-line);
+}
+
+/* The footer content uses (almost) the whole width, with a small margin on each side */
+.site-footer .wrap-wide {
+  max-width: 1680px;
+  padding-inline: clamp(16px, 3vw, 56px);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 36px;
+  grid-template-columns: 1fr;
+}
+
+/* Tablets: about + navigation side by side, map below */
+@media (min-width: 620px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .f-map {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Desktop: three columns spread across the footer */
+@media (min-width: 960px) {
+  .footer-grid {
+    grid-template-columns: 1.1fr 0.6fr 1.6fr;
+    gap: clamp(40px, 5vw, 80px);
+  }
+
+  .f-map {
+    grid-column: auto;
+  }
+
+  #venue-map {
+    height: 340px;
+  }
+}
+
+.site-footer h2 {
+  margin: 0 0 14px;
+  color: var(--footer-ink);
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.site-footer p {
+  margin: 0 0 10px;
+}
+
+.f-small {
+  font-size: 0.88rem;
+  opacity: 0.85;
+}
+
+/* ---- Navigation column ---- */
+.f-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.f-nav li {
+  margin: 0 0 9px;
+}
+
+.f-nav a {
+  color: var(--footer-ink);
+  text-decoration: none;
+  opacity: 0.88;
+  transition: color 0.25s ease, opacity 0.25s ease, padding-left 0.25s ease;
+}
+
+.f-nav a:hover,
+.f-nav a:focus {
+  color: var(--link-hover);
+  opacity: 1;
+  padding-left: 6px;
+}
+
+/* ---- Map column ---- */
+.map-switch {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 3px;
+  background: var(--leaf-tint);
+  border: 1px solid var(--footer-line);
+  border-radius: 999px;
+}
+
+.map-switch button {
+  min-height: 36px;
+  padding: 6px 18px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--heading);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.map-switch button[aria-pressed="true"] {
+  color: var(--on-primary);
+  background: var(--card-top-1);
+}
+
+.map-switch button:focus-visible,
+.share-btn:focus-visible,
+.share-actions button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.map-box {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--footer-line);
+  border-radius: 8px;
+  background: var(--leaf-tint);
+}
+
+#venue-map {
+  height: 300px;
+  width: 100%;
+}
+
+.map-open {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  padding: 8px 14px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #2E7D32;
+  text-decoration: none;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.map-open:hover,
+.map-open:focus {
+  text-decoration: underline;
+}
+
+.map-caption {
+  margin: 8px 0 0;
+  font-size: 0.88rem;
+  opacity: 0.85;
+}
+
+.map-error {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  color: var(--warn-ink);
+  background: var(--warn-bg);
+}
+
+/* Emoji pins on the map */
+.venue-pin {
+  background: none;
+  border: 0;
+}
+
+.venue-pin span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  font-size: 1.35rem;
+  background: #fff;
+  border: 3px solid var(--card-top-1);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+}
+
+.venue-pin.cl span {
+  border-color: var(--card-top-2);
+}
+
+.venue-pin span i {
+  font-style: normal;
+  transform: rotate(45deg);
+}
+
+.leaflet-popup-content h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.leaflet-popup-content p {
+  margin: 0;
+}
+
+/* ---- Share button and QR menu ---- */
+.share {
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--on-primary);
+  background: var(--card-top-1);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.share-btn:hover {
+  color: var(--on-accent);
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+.share-menu {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 14px);
+  z-index: 1200;
+  width: min(290px, 86vw);
+  padding: 18px;
+  text-align: center;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--footer-line);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  transform-origin: 20% 100%;
+}
+
+.share-menu[hidden] {
+  display: none;
+}
+
+.share-title {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.share-qr {
+  display: grid;
+  place-items: center;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 10px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--footer-line);
+  border-radius: 12px;
+}
+
+.share-qr svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.share-url {
+  margin: 0 0 12px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.share-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.share-actions button {
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--heading);
+  background: var(--leaf-tint);
+  border: 1px solid var(--footer-line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.share-actions button:hover {
+  color: var(--on-primary);
+  background: var(--card-top-1);
+}
+
+.share-status {
+  min-height: 1.2em;
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  color: var(--heading);
+}
+
+/* ---- Divider and copyright ---- */
+.footer-divider {
+  margin: 40px 0 22px;
+  border: 0;
+  border-top: 1px solid var(--footer-line);
+}
+
+.f-copy {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Dark map: the OpenStreetMap tiles are inverted so the map matches the dark theme */
+:root[data-theme="dark"] .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.92);
+}
