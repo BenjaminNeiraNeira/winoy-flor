@@ -65,3 +65,7 @@ If a script does not run, a safety net in `<head>` shows all the content after 2
 
 
 The site is meant to be published with GitHub Pages from the `main` branch.
+
+## Infographic page
+
+`infografia.html` shows the infographic (`assets/infographic/`, PNG + PDF). The QR code in the credits (footer) opens `https://benjaminneiraneira.github.io/winoy-flor/infografia.html`; it is drawn by `js/infographic-qr.js` from the `data-qr-url` attribute. To update the infographic, replace the two files in `assets/infographic/` keeping their names.

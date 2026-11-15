@@ -26,13 +26,13 @@
     } catch (error) { /* storage not available: the system theme is used */ }
   </script>
 
-  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=6">
-  <link rel="stylesheet" href="css/variables.css?v=6">
-  <link rel="stylesheet" href="css/base.css?v=6">
-  <link rel="stylesheet" href="css/components.css?v=6">
-  <link rel="stylesheet" href="css/sections.css?v=6">
-  <link rel="stylesheet" href="css/footer.css?v=6">
-  <link rel="stylesheet" href="css/animations.css?v=6">
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=7">
+  <link rel="stylesheet" href="css/variables.css?v=7">
+  <link rel="stylesheet" href="css/base.css?v=7">
+  <link rel="stylesheet" href="css/components.css?v=7">
+  <link rel="stylesheet" href="css/sections.css?v=7">
+  <link rel="stylesheet" href="css/footer.css?v=7">
+  <link rel="stylesheet" href="css/animations.css?v=7">
 </head>
 <body>
 
@@ -884,10 +884,16 @@
           <p>A fictional binational festival of the new sun and the flowers, celebrated in Medellín (Colombia) and Temuco (Chile).</p>
           <p class="f-small">Created by <strong>Group 5</strong> of the COIL project between Chile and Colombia. It is a fictional festival inspired by two real celebrations: the Feria de las Flores (Colombia) and We Tripantu (Chile).</p>
           <p class="f-small">The images of this site were generated with artificial intelligence. The information about guarapo, ruana and Cali was shared by COIL partners in Colombia.</p>
-          <!-- Pending: link to the digital version of the infographic -->
+          <!-- Infographic: the QR code (drawn by js/infographic-qr.js) opens the infographic page -->
+          <div class="info-qr">
+            <div class="info-qr-code" data-qr-url="https://benjaminneiraneira.github.io/winoy-flor/infografia.html" aria-live="polite"></div>
+            <div class="info-qr-text">
+              <h3>Read the infographic</h3>
+              <p class="f-small">Scan the code with your phone, or <a href="infografia.html">open it here</a>.</p>
+            </div>
+          </div>
 
-          <!-- Share: the QR code opens the address in data-share-url.
-               For now it is this page; replace it with the infographic address later. -->
+          <!-- Share: the QR code opens the address in data-share-url (this festival page). -->
           <div class="share" data-share-url="https://benjaminneiraneira.github.io/winoy-flor/">
             <button class="share-btn" type="button" aria-expanded="false" aria-controls="share-menu">
               Share
@@ -918,6 +924,7 @@
             <li><a href="#sustainability">Sustainability</a></li>
             <li><a href="#future">Future implementations</a></li>
             <li><a href="#sources">Sources</a></li>
+            <li><a href="infografia.html">Infographic</a></li>
           </ul>
         </nav>
 
@@ -945,12 +952,13 @@
 
   <button class="to-top" type="button" aria-label="Back to top"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Back to top</span></button>
 
-  <script src="assets/vendor/leaflet/leaflet.js?v=6" defer></script>
-  <script src="assets/vendor/qrcode/qrcode.js?v=6" defer></script>
-  <script src="js/theme.js?v=6" defer></script>
-  <script src="js/main.js?v=6" defer></script>
-  <script src="js/effects.js?v=6" defer></script>
-  <script src="js/map.js?v=6" defer></script>
-  <script src="js/share.js?v=6" defer></script>
+  <script src="assets/vendor/leaflet/leaflet.js?v=7" defer></script>
+  <script src="assets/vendor/qrcode/qrcode.js?v=7" defer></script>
+  <script src="js/theme.js?v=7" defer></script>
+  <script src="js/main.js?v=7" defer></script>
+  <script src="js/effects.js?v=7" defer></script>
+  <script src="js/map.js?v=7" defer></script>
+  <script src="js/share.js?v=7" defer></script>
+  <script src="js/infographic-qr.js?v=7" defer></script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wiñoy Flor · Infographic</title>
+  <meta name="author" content="Group 5, COIL project between Chile and Colombia">
+  <meta name="description" content="The Wiñoy Flor infographic: the festival at a glance. Read it here or download it as a PDF.">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <script>
+    try {
+      var savedTheme = localStorage.getItem('winoy-theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    } catch (error) { /* storage not available: the light theme is used */ }
+  </script>
+  <link rel="stylesheet" href="css/variables.css?v=7">
+  <link rel="stylesheet" href="css/base.css?v=7">
+  <link rel="stylesheet" href="css/infographic.css?v=7">
+</head>
+<body class="info-page">
+
+  <header class="info-bar">
+    <a class="info-back" href="index.html">&larr; Back to the festival</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+      <span class="icon" aria-hidden="true">🌙</span><span class="toggle-text">Dark</span>
+    </button>
+  </header>
+
+  <main class="info-main">
+    <h1>Wiñoy Flor at a glance</h1>
+    <p class="info-lead">Our infographic summarizes the festival. Tap or click the picture to see it full size.</p>
+
+    <a class="info-figure" href="assets/infographic/winoy-flor-infographic.png" target="_blank" rel="noopener">
+      <img src="assets/infographic/winoy-flor-infographic.png" width="3174" height="2244"
+           alt="Infographic of the Wiñoy Flor festival: what it is, where and when, fusion food, the five moments, people and music, drinks, contributions from Colombia, our sustainable practice and a QR code to the website.">
+    </a>
+
+    <p class="info-actions">
+      <a class="info-btn" href="assets/infographic/winoy-flor-infographic.pdf" download>Download the PDF</a>
+      <a class="info-btn alt" href="assets/infographic/winoy-flor-infographic.png" target="_blank" rel="noopener">Open the picture</a>
+    </p>
+    <p class="info-credit">Created by Group 5 of the COIL project between Chile and Colombia. Drawings made with AI.</p>
+  </main>
+
+  <script src="js/theme.js?v=7" defer></script>
+</body>
+</html>
