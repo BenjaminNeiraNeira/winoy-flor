@@ -49,7 +49,7 @@ between both, and the choice is saved in the browser (`localStorage`, key `winoy
 
 ## Page sections
 
-About · Facts · Program · Food & drinks · Culture · Respect · Sustainability · Future implementations · Sources · Credits
+About · Facts · Program · Food & drinks · Culture · Respect · Sustainability · Play · Sources · Credits
 
 The contributions from our partners in Colombia (guarapo, ruana, Feria de Cali, sancocho, lulada, champús, salsa) are inside Food & drinks, Culture and Respect.
 
@@ -69,3 +69,10 @@ The site is meant to be published with GitHub Pages from the `main` branch.
 ## Infographic page
 
 `infografia.html` shows the infographic (`assets/infographic/`, PNG + PDF). The QR code in the credits (footer) opens `https://benjaminneiraneira.github.io/winoy-flor/infografia.html`; it is drawn by `js/infographic-qr.js` from the `data-qr-url` attribute. To update the infographic, replace the two files in `assets/infographic/` keeping their names.
+
+## Card battle game
+
+`juego.html` is a card battle against the computer (16 cards, 5 rounds). Files: `css/game.css`, `js/game.js` (the 16 cards and their powers are in the `CARDS` list at the top), and the card pictures in `assets/cards/` (`back.svg` is the card back). It is linked from the "Play" section (which replaced "Future implementations") and from the footer navigation of `index.html`.
+
+
+The animated card back is made of separate layers (`assets/cards/back/`, `css/cardback.css`) animated with CSS transform/opacity, so the browser runs it on the graphics card.

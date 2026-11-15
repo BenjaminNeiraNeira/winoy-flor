@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Card back (the green card with the kultrún). It is built from separate layers
+   (see assets/cards/back/) and animated with transform and opacity only, so the
+   browser runs the animation on the graphics card instead of re-painting a big
+   picture on every frame. The look is the same as the old single animated SVG.
+   Generated; the layers share the 400 x 560 drawing space of the original.
+   ========================================================================== */
+
+.cback {
+  position: relative;
+  display: block;
+  aspect-ratio: 400 / 560;
+  overflow: hidden;
+  isolation: isolate;
+  contain: layout paint;
+}
+
+.cback .cb {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.cback .cb-rays {
+  left: -12.5%;
+  top: 5.714%;
+  width: 125%;
+  height: 89.286%;
+}
+
+.cback .cb-spin,
+.cback .cb-spinr,
+.cback .cb-rays,
+.cback .cb-glow,
+.cback .cb-breathe,
+.cback .cb-flame,
+.cback .cb-tw,
+.cback .cb-fall,
+.cback .cb-sweep {
+  will-change: transform, opacity;
+}
+
+.cb-spin { transform-origin: 50% 50.357%; animation: cb-spin 48s linear infinite; }
+.cb-spinr { transform-origin: 50% 50.357%; animation: cb-spin 32s linear infinite reverse; }
+.cb-rays { transform-origin: 50% 50%; animation: cb-spin 90s linear infinite; }
+.cb-glow { animation: cb-glow 3.6s ease-in-out infinite; }
+.cb-breathe { transform-origin: 50% 50.357%; animation: cb-breathe 4s ease-in-out infinite; }
+.cb-flame { transform-origin: 50% 95.3%; animation: cb-flame 1.3s ease-in-out infinite alternate; }
+.cb-tw { transform-origin: 50% 50%; animation: cb-tw 2.6s ease-in-out infinite; }
+.cb-tw2 { animation-duration: 3.4s; animation-delay: 0.8s; }
+.cb-tw3 { animation-duration: 2.1s; animation-delay: 1.3s; }
+.cb-fall { transform-origin: 0 0; animation: cb-fall 9s linear infinite; }
+.cb-fall:nth-of-type(3n + 2) { animation-duration: 12s; }
+.cb-fall:nth-of-type(3n) { animation-duration: 10s; }
+.cb-clip { position: absolute; inset: 0; clip-path: inset(2.143% 3% round 6% / 4.286%); pointer-events: none; }
+.cb-sweep { animation: cb-sweep 5.5s ease-in-out infinite; }
+
+@keyframes cb-spin { to { transform: rotate(360deg); } }
+@keyframes cb-glow { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.85; } }
+@keyframes cb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+@keyframes cb-flame {
+  0% { transform: scale(1, 0.94) skewX(-2deg); }
+  100% { transform: scale(0.96, 1.06) skewX(3deg); }
+}
+@keyframes cb-tw {
+  0%, 100% { opacity: 0.25; transform: scale(0.55); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
+@keyframes cb-fall {
+  0% { transform: translate(0, -7.143%) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translate(6.5%, 110.714%) rotate(300deg); opacity: 0; }
+}
+@keyframes cb-sweep {
+  0% { transform: translateX(-160%); }
+  55%, 100% { transform: translateX(110%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cback .cb { animation: none !important; will-change: auto; }
+}
+.cback .cb-s0 { left: 12.250%; top: 19.464%; width: 5.500%; height: 3.929%; }
+.cback .cb-s1 { left: 82.000%; top: 21.429%; width: 5.000%; height: 3.571%; }
+.cback .cb-s2 { left: 10.500%; top: 75.000%; width: 5.000%; height: 3.571%; }
+.cback .cb-s3 { left: 84.500%; top: 76.429%; width: 6.000%; height: 4.286%; }
+.cback .cb-s4 { left: 19.500%; top: 51.429%; width: 4.000%; height: 2.857%; }
+.cback .cb-s5 { left: 78.000%; top: 50.357%; width: 4.000%; height: 2.857%; }
+.cback .cb-s6 { left: 47.750%; top: 15.536%; width: 4.500%; height: 3.214%; }
+.cback .cb-s7 { left: 48.000%; top: 83.214%; width: 4.000%; height: 2.857%; }
+.cback .cb-s8 { left: 28.000%; top: 88.929%; width: 4.000%; height: 2.857%; }
+.cback .cb-s9 { left: 68.000%; top: 88.929%; width: 4.000%; height: 2.857%; }
+.cback .cb-flame { left: 44.250%; top: 83.750%; width: 11.500%; height: 11.429%; }

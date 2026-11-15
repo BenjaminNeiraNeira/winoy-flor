@@ -6,6 +6,13 @@
   <title>Wiñoy Flor</title>
   <meta name="author" content="Group 5, COIL project between Chile and Colombia">
   <meta name="description" content="Wiñoy Flor: a fictional binational festival of the new sun and the flowers, celebrated in Medellín (Colombia) and Temuco (Chile).">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wiñoy Flor">
+  <meta property="og:title" content="Wiñoy Flor">
+  <meta property="og:description" content="A fictional binational festival of the new sun and the flowers, celebrated in Medellín (Colombia) and Temuco (Chile).">
+  <meta property="og:url" content="https://benjaminneiraneira.github.io/winoy-flor/">
+  <meta property="og:image" content="https://benjaminneiraneira.github.io/winoy-flor/assets/images/cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
 
   <!-- Marks that JavaScript is available (scroll animations) and restores the saved theme before painting -->
@@ -26,16 +33,17 @@
     } catch (error) { /* storage not available: the system theme is used */ }
   </script>
 
-  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=7">
-  <link rel="stylesheet" href="css/variables.css?v=7">
-  <link rel="stylesheet" href="css/base.css?v=7">
-  <link rel="stylesheet" href="css/components.css?v=7">
-  <link rel="stylesheet" href="css/sections.css?v=7">
-  <link rel="stylesheet" href="css/footer.css?v=7">
-  <link rel="stylesheet" href="css/animations.css?v=7">
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css?v=18">
+  <link rel="stylesheet" href="css/variables.css?v=18">
+  <link rel="stylesheet" href="css/base.css?v=18">
+  <link rel="stylesheet" href="css/components.css?v=18">
+  <link rel="stylesheet" href="css/sections.css?v=18">
+  <link rel="stylesheet" href="css/cardback.css?v=18">
+  <link rel="stylesheet" href="css/play.css?v=18">
+  <link rel="stylesheet" href="css/footer.css?v=18">
+  <link rel="stylesheet" href="css/animations.css?v=18">
 </head>
 <body>
-
   <div class="progress" aria-hidden="true"></div>
   <a class="skip-link" href="#about">Skip to content</a>
 
@@ -76,7 +84,7 @@
         <li><a href="#culture">Culture</a></li>
         <li><a href="#respect">Respect</a></li>
         <li><a href="#sustainability">Sustainability</a></li>
-        <li><a href="#future">Future</a></li>
+        <li><a href="#play">Play</a></li>
         <li><a href="#credits">Credits</a></li>
       </ul>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
@@ -85,7 +93,7 @@
     </div>
   </nav>
 
-  <main>
+  <main id="main">
 
     <!-- ===================== STATS ===================== -->
     <div class="stats-band">
@@ -131,14 +139,14 @@
             </p>
           </div>
 
-          <figure class="figure" data-reveal>
+          <figure class="figure" tabindex="0" data-reveal>
             <div class="media"><img src="assets/images/cover.jpg" width="1200" height="670"
                  alt="A silletera from Medellín carrying a disc of flowers and a Mapuche woman with a kultrún stand beside a bonfire at sunrise in the mountains."></div>
             <figcaption>Cover image: a silletera and a Mapuche guardian meet at the solstice sunrise.</figcaption>
           </figure>
         </div>
 
-        <figure class="figure" data-reveal style="margin-top:28px">
+        <figure class="figure" tabindex="0" data-reveal style="margin-top:28px">
           <div class="media"><img src="assets/images/banner-live-opening.jpg" width="1400" height="463" loading="lazy" decoding="async"
                alt="Split scene: flower gardens and silleteros in Medellín on the left, a bonfire and tents in Temuco on the right, joined by a golden arc of light and giant screens."></div>
           <figcaption>“Live-linked opening”: Medellín (left) and Temuco (right), one festival, two countries, at the same time.</figcaption>
@@ -758,7 +766,7 @@
             <p><span class="lbl">Why it helps.</span> Flowers are organic waste: if they end up in a landfill they decompose without being used, while composting turns them into fertilizer and reduces the festival’s trash. The practice builds on capacities that already exist: the Mayor’s Office of Medellín composts organic waste in its waste management programs, and the city’s cleaning company prepares a special operation after the Silleteros Parade to leave the streets clean. We did not find a source explaining what is done today with the flowers of the silletas, so this part is a proposal.</p>
             <p><span class="lbl">Cultural meaning.</span> In We Tripantu, the renewal of the cycle is understood as a commitment to care for Ñuke Mapu, Mother Earth. Returning the flowers to the earth unites both cultures: the silletero hands over the flower he grew and the earth gives it back as fertilizer, just as in the festival’s legend, where Ñuke Mapu and the silletero light the New Fire together.</p>
           </div>
-          <figure class="figure" data-reveal>
+          <figure class="figure" tabindex="0" data-reveal>
             <div class="media"><img src="assets/images/sustain-flowers-to-earth.jpg" width="1200" height="509" loading="lazy" decoding="async"
                  alt="Silleteros dismantling a flower silleta next to wooden compost bins, with families planting a vegetable garden at sunrise."></div>
             <figcaption>Flowers that return to the earth</figcaption>
@@ -773,7 +781,7 @@
             <p><span class="lbl">How it works.</span> The days are held together with what already exists, not in place of it. In Medellín, the Mayor’s Office has already worked on the Santa Elena creek and maintains the city’s creeks. In Temuco, neighborhood organizations have drawn attention to the trash on the Cautín bank, the municipality reports cleanup operations, and volunteer days have already been held in wetlands. The festival would join these efforts and make them visible, without promising to clean an entire river.</p>
             <p><span class="lbl">Why it helps and what it means.</span> Water is central to We Tripantu: many families bathe in rivers or streams at dawn to renew themselves, and several sources link this to the commitment to care for nature. Caring for the water before the festival makes that ritual gesture happen in cared-for water, and also protects the surroundings that tourists visit.</p>
           </div>
-          <figure class="figure" data-reveal>
+          <figure class="figure" tabindex="0" data-reveal>
             <div class="media"><img src="assets/images/sustain-water-guardians.jpg" width="1200" height="509" loading="lazy" decoding="async"
                  alt="Volunteers in hats and ruanas cleaning a flowery river bank at dawn while a Mapuche elder offers a greeting to the water."></div>
             <figcaption>Water guardians</figcaption>
@@ -787,7 +795,7 @@
             <p><span class="lbl">What it is.</span> Because Wiñoy Flor takes place at the same time in Medellín and Temuco, nobody needs to cross the continent to share the New Fire ceremony, the storytelling night or the grand parade: each person lives the festival in their own city and meets the other venue through screens.</p>
             <p><span class="lbl">Why it helps.</span> Studies on virtual and hybrid events show that replacing long trips greatly reduces an event’s emissions, although the energy used by streaming and screen fatigue should be taken into account. That is why the festival remains in person at each venue and the live link is used only at key moments.</p>
           </div>
-          <figure class="figure" data-reveal>
+          <figure class="figure" tabindex="0" data-reveal>
             <div class="media"><img src="assets/images/sustain-live-festival.jpg" width="1200" height="509" loading="lazy" decoding="async"
                  alt="Families in Medellín and a Mapuche community around a bonfire in Temuco greeting each other through giant screens under a golden arc."></div>
             <figcaption>Live simultaneous festival</figcaption>
@@ -803,16 +811,31 @@
       </div>
     </section>
 
-    <!-- ===================== FUTURE ===================== -->
-    <section class="band tint" id="future">
+    <!-- ===================== PLAY ===================== -->
+    <section class="band tint" id="play">
       <div class="wrap">
         <div class="section-head" data-reveal>
-          <div class="eyebrow">What comes next</div>
-          <h2>Future implementations</h2>
+          <div class="eyebrow">Test your knowledge</div>
+          <h2>Play</h2>
         </div>
-        <div class="soon" data-reveal style="--delay:.1s">
-          <p><strong>Coming soon!</strong></p>
-          <p>Wiñoy Flor keeps growing. New features and surprises are on the way.</p>
+        <div class="play-grid">
+          <div class="play-text" data-reveal style="--delay:.1s">
+            <p class="lead">Meet the festival by playing with it! In the <strong>Wiñoy Flor Card Battle</strong> you face the computer with 16 illustrated cards: characters, symbols, instruments, food and drinks from both countries.</p>
+            <ul class="play-points">
+              <li><span class="pp-ico bloom" aria-hidden="true"></span><span>Play a card and choose its power: <strong>Bloom</strong>, <strong>Fire</strong> or <strong>Harmony</strong>.</span></li>
+              <li><span class="pp-ico fire" aria-hidden="true"></span><span>The higher number wins the round. Win more rounds out of five to win the battle.</span></li>
+              <li><span class="pp-ico harmony" aria-hidden="true"></span><span>Learn a real fact about the festival in every round.</span></li>
+            </ul>
+            <p><a class="play-btn" href="juego.html">Play the card battle</a></p>
+          </div>
+          <div class="play-art" data-reveal style="--delay:.2s">
+            <div class="deck">
+              <a class="d-link d-card d-l" href="juego.html" tabindex="-1" aria-hidden="true"><img src="assets/cards/petalo.svg" alt="" width="320" height="240" loading="lazy"></a>
+              <a class="d-link d-card d-r" href="juego.html" tabindex="-1" aria-hidden="true"><img src="assets/cards/sol.svg" alt="" width="320" height="240" loading="lazy"></a>
+              <a class="d-link d-back d-b2" href="juego.html" tabindex="-1" aria-hidden="true"><span class="cback" aria-hidden="true"><img class="cb" src="assets/cards/back/base.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-glow" src="assets/cards/back/glow.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-rays" src="assets/cards/back/rays.svg" alt="" loading="lazy" decoding="async" width="500" height="500"><img class="cb" src="assets/cards/back/disc.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-spin" src="assets/cards/back/flowers.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-spinr" src="assets/cards/back/petals.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb" src="assets/cards/back/inner.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-breathe" src="assets/cards/back/kultrun.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-s0 cb-tw" src="assets/cards/back/sparkle-9.svg" alt="" loading="lazy" decoding="async" width="22" height="22"><img class="cb cb-s1 cb-tw cb-tw2" src="assets/cards/back/sparkle-8.svg" alt="" loading="lazy" decoding="async" width="20" height="20"><img class="cb cb-s2 cb-tw cb-tw3" src="assets/cards/back/sparkle-8.svg" alt="" loading="lazy" decoding="async" width="20" height="20"><img class="cb cb-s3 cb-tw" src="assets/cards/back/sparkle-10.svg" alt="" loading="lazy" decoding="async" width="24" height="24"><img class="cb cb-s4 cb-tw cb-tw2" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><img class="cb cb-s5 cb-tw cb-tw3" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><img class="cb cb-s6 cb-tw" src="assets/cards/back/sparkle-7.svg" alt="" loading="lazy" decoding="async" width="18" height="18"><img class="cb cb-s7 cb-tw cb-tw2" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><img class="cb" src="assets/cards/back/top.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-flame" src="assets/cards/back/flame.svg" alt="" loading="lazy" decoding="async" width="46" height="64"><img class="cb cb-s8 cb-tw cb-tw2" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><img class="cb cb-s9 cb-tw cb-tw2" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><svg class="cb cb-fall" style="overflow:visible;animation-delay:0.0s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(70.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#C2185B" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:1.3s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(150.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#F48FB1" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:2.6s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(250.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#FFD76A" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:3.9s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(330.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#F48FB1" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:5.2s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(110.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#F28C28" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:6.5s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(290.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#C2185B" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><span class="cb-clip"><img class="cb cb-sweep" src="assets/cards/back/sweep.svg" alt="" loading="lazy" decoding="async" width="400" height="560"></span></span></a>
+              <a class="d-link d-back d-b1" href="juego.html" aria-label="Play the card battle"><span class="cback" aria-hidden="true"><img class="cb" src="assets/cards/back/base.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-glow" src="assets/cards/back/glow.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-rays" src="assets/cards/back/rays.svg" alt="" loading="lazy" decoding="async" width="500" height="500"><img class="cb" src="assets/cards/back/disc.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-spin" src="assets/cards/back/flowers.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-spinr" src="assets/cards/back/petals.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb" src="assets/cards/back/inner.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-breathe" src="assets/cards/back/kultrun.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-s0 cb-tw" src="assets/cards/back/sparkle-9.svg" alt="" loading="lazy" decoding="async" width="22" height="22"><img class="cb cb-s1 cb-tw cb-tw2" src="assets/cards/back/sparkle-8.svg" alt="" loading="lazy" decoding="async" width="20" height="20"><img class="cb cb-s2 cb-tw cb-tw3" src="assets/cards/back/sparkle-8.svg" alt="" loading="lazy" decoding="async" width="20" height="20"><img class="cb cb-s3 cb-tw" src="assets/cards/back/sparkle-10.svg" alt="" loading="lazy" decoding="async" width="24" height="24"><img class="cb cb-s4 cb-tw cb-tw2" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><img class="cb cb-s5 cb-tw cb-tw3" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><img class="cb cb-s6 cb-tw" src="assets/cards/back/sparkle-7.svg" alt="" loading="lazy" decoding="async" width="18" height="18"><img class="cb cb-s7 cb-tw cb-tw2" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><img class="cb" src="assets/cards/back/top.svg" alt="" loading="lazy" decoding="async" width="400" height="560"><img class="cb cb-flame" src="assets/cards/back/flame.svg" alt="" loading="lazy" decoding="async" width="46" height="64"><img class="cb cb-s8 cb-tw cb-tw2" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><img class="cb cb-s9 cb-tw cb-tw2" src="assets/cards/back/sparkle-6.svg" alt="" loading="lazy" decoding="async" width="16" height="16"><svg class="cb cb-fall" style="overflow:visible;animation-delay:0.0s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(70.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#C2185B" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:1.3s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(150.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#F48FB1" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:2.6s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(250.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#FFD76A" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:3.9s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(330.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#F48FB1" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:5.2s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(110.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#F28C28" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><svg class="cb cb-fall" style="overflow:visible;animation-delay:6.5s" viewBox="0 0 400 560" preserveAspectRatio="none" width="400" height="560" aria-hidden="true" focusable="false"><g transform="translate(290.0 0.0) rotate(60)"><path d="M0 0 C 4.0 -5.4, 12.0 -5.4, 16.0 0 C 12.0 5.4, 4.0 5.4, 0 0 Z" fill="#C2185B" stroke="#3B2A38" stroke-width="1.2" stroke-linejoin="round"/></g></svg><span class="cb-clip"><img class="cb cb-sweep" src="assets/cards/back/sweep.svg" alt="" loading="lazy" decoding="async" width="400" height="560"></span></span></a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -922,9 +945,9 @@
             <li><a href="#culture">Culture</a></li>
             <li><a href="#respect">Respect</a></li>
             <li><a href="#sustainability">Sustainability</a></li>
-            <li><a href="#future">Future implementations</a></li>
             <li><a href="#sources">Sources</a></li>
             <li><a href="infografia.html">Infographic</a></li>
+            <li><a href="#play">Play</a></li>
           </ul>
         </nav>
 
@@ -952,13 +975,13 @@
 
   <button class="to-top" type="button" aria-label="Back to top"><span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="txt">Back to top</span></button>
 
-  <script src="assets/vendor/leaflet/leaflet.js?v=7" defer></script>
-  <script src="assets/vendor/qrcode/qrcode.js?v=7" defer></script>
-  <script src="js/theme.js?v=7" defer></script>
-  <script src="js/main.js?v=7" defer></script>
-  <script src="js/effects.js?v=7" defer></script>
-  <script src="js/map.js?v=7" defer></script>
-  <script src="js/share.js?v=7" defer></script>
-  <script src="js/infographic-qr.js?v=7" defer></script>
+  <script src="assets/vendor/leaflet/leaflet.js?v=18" defer></script>
+  <script src="assets/vendor/qrcode/qrcode.js?v=18" defer></script>
+  <script src="js/theme.js?v=18" defer></script>
+  <script src="js/main.js?v=18" defer></script>
+  <script src="js/effects.js?v=18" defer></script>
+  <script src="js/map.js?v=18" defer></script>
+  <script src="js/share.js?v=18" defer></script>
+  <script src="js/infographic-qr.js?v=18" defer></script>
 </body>
 </html>

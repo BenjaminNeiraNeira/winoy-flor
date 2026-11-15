@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wiñoy Flor · Card Battle</title>
+  <meta name="author" content="Group 5, COIL project between Chile and Colombia">
+  <meta name="description" content="Play the Wiñoy Flor card battle against the computer: 16 cards about the characters, music, food and drinks of the festival.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wiñoy Flor">
+  <meta property="og:title" content="Wiñoy Flor · Card Battle">
+  <meta property="og:description" content="Play the Wiñoy Flor card battle against the computer: 16 cards about the characters, music, food and drinks of the festival.">
+  <meta property="og:url" content="https://benjaminneiraneira.github.io/winoy-flor/juego.html">
+  <meta property="og:image" content="https://benjaminneiraneira.github.io/winoy-flor/assets/images/cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <script>
+    try {
+      var savedTheme = localStorage.getItem('winoy-theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    } catch (error) { /* storage not available: the light theme is used */ }
+  </script>
+  <link rel="stylesheet" href="css/variables.css?v=18">
+  <link rel="stylesheet" href="css/base.css?v=18">
+  <link rel="stylesheet" href="css/infographic.css?v=18">
+  <link rel="stylesheet" href="css/cardback.css?v=18">
+  <link rel="stylesheet" href="css/game.css?v=18">
+</head>
+<body class="game-page">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="info-bar">
+    <a class="info-back" href="index.html">&larr; Back to the festival</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+      <span class="icon" aria-hidden="true">🌙</span><span class="toggle-text">Dark</span>
+    </button>
+  </header>
+
+  <main id="main" class="game-main">
+    <h1>Wiñoy Flor <span class="h1-sub">Card Battle</span></h1>
+
+    <!-- ===== Start screen ===== -->
+    <section class="panel" id="start-panel" aria-labelledby="how-title">
+      <h2 id="how-title">How to play</h2>
+      <ol class="how">
+        <li><span class="n">1</span><p>You and the computer each get <strong>5 cards</strong> from the festival: characters, symbols, instruments, food and drinks.</p></li>
+        <li><span class="n">2</span><p>Each round, <strong>play one card</strong> and choose one of its three powers: <strong class="t-bloom">Bloom</strong>, <strong class="t-fire">Fire</strong> or <strong class="t-harmony">Harmony</strong>.</p></li>
+        <li><span class="n">3</span><p>The <strong>higher number wins</strong> the round. Win more rounds out of 5 to win the battle, and learn a fact about the festival in every round.</p></li>
+      </ol>
+      <button class="game-btn" id="start-btn" type="button">Start the battle</button>
+      <noscript><p class="noscript-note">The card battle needs JavaScript. Please turn it on in your browser to play.</p></noscript>
+    </section>
+
+    <!-- ===== Game ===== -->
+    <section class="board" id="board" hidden aria-label="Card battle">
+      <div class="scorebar" role="status" aria-live="off">
+        <span class="score-item">Round <strong id="round-n">1</strong> of 5</span>
+        <span class="score-item you">You <strong id="score-you">0</strong></span>
+        <span class="score-item cpu">Computer <strong id="score-cpu">0</strong></span>
+        <span class="score-item time">Time <strong id="timer">0:00</strong></span>
+        <button class="tips-toggle" id="tips-toggle" type="button" aria-pressed="false">Tips: off</button>
+      </div>
+
+      <div class="coach" id="coach" role="status" aria-live="polite" hidden>
+        <span class="coach-ico" aria-hidden="true"></span>
+        <p class="coach-text" id="coach-text"></p>
+      </div>
+
+      <p class="prompt" id="prompt" aria-live="polite">Choose a card from your hand.</p>
+
+      <div class="arena" id="arena">
+        <div class="slot" id="slot-you">
+          <p class="slot-label">You</p>
+          <div class="slot-card" id="slot-you-card"><div class="slot-empty">Your card</div></div>
+        </div>
+        <div class="vs" aria-hidden="true">VS</div>
+        <div class="slot" id="slot-cpu">
+          <p class="slot-label">Computer</p>
+          <div class="slot-card" id="slot-cpu-card"><div class="slot-empty">Computer's card</div></div>
+        </div>
+      </div>
+
+      <div class="stat-picker" id="stat-picker" hidden>
+        <p class="stat-title">Choose a power to compete with:</p>
+        <div class="stat-buttons" id="stat-buttons"></div>
+      </div>
+
+      <div class="result" id="result" hidden aria-live="polite">
+        <p class="result-title" id="result-title"></p>
+        <p class="result-fact" id="result-fact"></p>
+        <button class="game-btn" id="next-btn" type="button">Next round</button>
+      </div>
+
+      <h2 class="hand-title" id="hand-title">Your hand</h2>
+      <div class="hand" id="hand" role="group" aria-labelledby="hand-title"></div>
+    </section>
+
+    <!-- ===== End screen ===== -->
+    <section class="panel end" id="end-panel" hidden aria-live="polite">
+      <h2 id="end-title"></h2>
+      <p id="end-text"></p>
+      <p class="end-stats">Rounds won: <strong id="end-wins"></strong> · Time: <strong id="end-time"></strong></p>
+
+      <div class="end-actions">
+        <button class="game-btn" id="again-btn" type="button">Play again</button>
+        <a class="game-btn alt" href="index.html">Back to the festival</a>
+        <a class="game-btn alt" href="infografia.html">Read the infographic</a>
+      </div>
+    </section>
+
+    <p class="info-credit">Created by Group 5 of the COIL project between Chile and Colombia. Drawings made with AI. All the facts come from the Wiñoy Flor festival, a fictional festival.</p>
+  </main>
+
+  <script src="js/theme.js?v=18" defer></script>
+  <script src="js/game.js?v=18" defer></script>
+</body>
+</html>

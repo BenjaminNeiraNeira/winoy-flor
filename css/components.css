@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Components: hero, navigation, cards, "coming soon" box and footer
+   Components: hero, navigation, cards, and footer
    (shared by both festivals; colors come from variables.css)
    ========================================================================== */
 
@@ -225,15 +225,6 @@
 
 .card p {
   margin: 4px 0;
-}
-
-/* ---- "Coming soon" box (future implementations) ---- */
-.soon {
-  background: var(--card);
-  border: 2px dashed var(--soon-border);
-  border-radius: 10px;
-  padding: 24px;
-  text-align: center;
 }
 
 /* The footer / credits block lives in footer.css */

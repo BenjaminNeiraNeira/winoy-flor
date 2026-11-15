@@ -104,7 +104,7 @@
 
 .info-btn:hover,
 .info-btn:focus-visible {
-  color: #fff;
+  color: var(--on-primary);
   background: var(--accent);
   transform: translateY(-2px);
 }

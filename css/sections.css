@@ -110,6 +110,12 @@ section.band.tint {
   box-shadow: var(--shadow);
 }
 
+/* Keyboard users: the figure can be focused to slide the caption out */
+.figure:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
 /* Touch screens have no hover: the caption simply sits below the picture */
 @media (hover: none) {
   .figure figcaption {
@@ -773,6 +779,11 @@ table.data tbody th {
 
 .contrib .label {
   margin: 0;
+}
+
+/* the green label on the pink box needs a darker green in the light theme (contrast) */
+html:not([data-theme="dark"]) .contrib .festival .label {
+  color: #1F6A2A;
 }
 
 .checklist {

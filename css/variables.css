@@ -40,7 +40,6 @@
   /* Country cards (first: Colombia, second: Chile) and highlights */
   --card-top-1: #2E7D32;
   --card-top-2: #C8321A;
-  --soon-border: #C2185B;
 
   /* Accents */
   --accent: #C2185B;
@@ -64,7 +63,6 @@
   --heading: #F2A900;
   --link: #F2A900;
   --link-hover: #F06292;
-  --soon-border: #F06292;
   --muted: #B8B0A0;
   --paper: #121A12;
   --leaf-tint: #1A2A1C;
